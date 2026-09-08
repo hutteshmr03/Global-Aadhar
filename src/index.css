@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-brand-primary: #2D5A54;
+  --color-brand-accent: #C77B4A;
+  --color-brand-dark: #1A3330;
+  --color-brand-light: #447D76;
+  --color-brand-badge: #E6ECEB;
+  --color-bg-base: #F5F1EA;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-warm: #FAF7F2;
+  --color-text-main: #1A3330;
+  --color-text-body: #4A5856;
+  --color-text-muted: #718280;
+  --color-border-subtle: #E6E0D6;
+  --color-border-accent: #2D5A54;
+  
+  --font-headline: 'Archivo Black', 'Oswald', 'Anton', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #F5F1EA;
+}
+
+/* Keep responsive card content inside its available width. */
+.deck-container .grid > *,
+.deck-container .flex > * {
+  min-width: 0;
+}
+
+.deck-container p,
+.deck-container h1,
+.deck-container h2,
+.deck-container h3,
+.deck-container h4,
+.deck-container span,
+.deck-container a,
+.deck-container button {
+  overflow-wrap: break-word;
+}
+
+/* Typography Helpers - Legible, Bold, Condensed with Clean Letter Spacing */
+.font-deck-headline {
+  font-family: var(--font-headline);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.font-deck-body {
+  font-family: var(--font-body);
+}
+
+/* Slide Container & Section Layouts */
+.deck-container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .deck-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .deck-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.deck-section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  position: relative;
+  border-top: 1px solid rgba(218, 210, 198, 0.7);
+}
+
+@media (min-width: 768px) {
+  .deck-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .deck-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Standardized Slide Header Eyebrow Bar */
+.slide-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.875rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(218, 210, 198, 0.9);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2D5A54;
+}
+
+/* Standardized Section Headlines & Intros */
+.deck-section-title {
+  font-family: var(--font-headline);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1A3330;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .deck-section-title {
+    font-size: 2.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .deck-section-title {
+    font-size: 2.5rem;
+  }
+}
+
+.deck-section-intro {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #4A5856;
+  max-width: 48rem;
+}
+
+@media (min-width: 640px) {
+  .deck-section-intro {
+    font-size: 1rem;
+  }
+}
+
+/* Buttons - Terracotta / Amber Highlight for High Pop and Editorial Polish */
+.btn-primary-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #C77B4A;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  padding: 0.6875rem 1.375rem;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(199, 123, 74, 0.25);
+  white-space: nowrap;
+}
+
+.btn-primary-teal:hover {
+  background-color: #B36838;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 16px rgba(199, 123, 74, 0.35);
+}
+
+.btn-secondary-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  color: #2D5A54;
+  border: 1.5px solid #2D5A54;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  padding: 0.6875rem 1.375rem;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(45, 90, 84, 0.05);
+}
+
+.btn-secondary-outline:hover {
+  background-color: #E6ECEB;
+  border-color: #1A3330;
+  color: #1A3330;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 90, 84, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F1EA;
+}
+::-webkit-scrollbar-thumb {
+  background: #D5CEBF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2D5A54;
+}

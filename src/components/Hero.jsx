@@ -1,0 +1,93 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, MapPin, User, ArrowUpRight } from 'lucide-react';
+import { brandMeta } from '../data/brandContent';
+
+export default function Hero() {
+  return (
+    <section className="relative pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-[#F5F1EA]">
+      <div className="deck-container">
+        {/* Slide Header Bar */}
+        <div className="slide-header-bar">
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
+            <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
+            <span>{brandMeta.name}</span>
+          </div>
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#718280] tracking-widest">
+            SLIDE 01 • EXECUTIVE SUMMARY
+          </div>
+        </div>
+
+        {/* Main Deck Hero Card */}
+        <div className="relative min-w-0 p-6 sm:p-8 lg:p-10 rounded-2xl bg-white border border-[#E6E0D6] shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+          {/* Subtle Ambient Decorative Glows */}
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#2D5A54]/5 blur-3xl pointer-events-none"></div>
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#2D5A54]/5 blur-3xl pointer-events-none"></div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="min-w-0 space-y-5 sm:space-y-6"
+          >
+            {/* Top Brand Stack */}
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 border-b border-[#E6E0D6]/80 pb-4">
+              <h1 className="min-w-0 font-deck-headline text-3xl sm:text-4xl lg:text-5xl text-[#1A3330] tracking-tight leading-tight">
+                GLOBAL AADHAR
+              </h1>
+              <span className="min-w-0 font-deck-headline text-sm sm:text-base lg:text-lg text-[#2D5A54] tracking-normal sm:border-l-2 sm:border-[#E6E0D6] sm:pl-4">
+                STRATEGIC COMMUNICATIONS
+              </span>
+            </div>
+
+            {/* Impact Headline & Subtext */}
+            <div className="space-y-3.5 max-w-3xl">
+              <h2 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-[#1A3330] tracking-tight leading-snug">
+                BUILDING TRUST. <br />
+                <span className="text-[#2D5A54] underline decoration-[#C77B4A] decoration-2 sm:decoration-4 underline-offset-6">
+                  CREATING IMPACT.
+                </span>
+              </h2>
+
+              <p className="font-deck-body text-xs sm:text-sm lg:text-base text-[#4A5856] leading-relaxed pt-1 max-w-2xl">
+                A Goa-based Public Relations and Strategic Communications company delivering integrated media, stakeholder engagement, and communications solutions that connect opportunities and drive measurable impact.
+              </p>
+            </div>
+
+            {/* Action Buttons Row */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+              <a
+                href="#contact"
+                className="btn-primary-teal text-xs px-6 py-2.5 shadow-md"
+              >
+                <span>Let's Talk</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="#services"
+                className="btn-secondary-outline text-xs px-6 py-2.5"
+              >
+                <span>Explore Core Services</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            {/* Deck Slide Footer Metadata Line */}
+            <div className="pt-6 border-t border-[#E6E0D6]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-deck-body text-xs font-semibold text-[#718280]">
+              <div className="flex items-center gap-2">
+                <User className="w-3.5 h-3.5 text-[#C77B4A]" />
+                <span>Presented by: <strong className="text-[#1A3330]">{brandMeta.presentedBy}</strong></span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#C77B4A]" />
+                <span className="text-[#1A3330] font-bold">{brandMeta.location}</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
