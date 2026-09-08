@@ -10,7 +10,7 @@ const rightIcons = [Share2, Heart, Cpu];
 
 export default function EngagementModels() {
   return (
-    <section id="models" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="models" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -18,7 +18,7 @@ export default function EngagementModels() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 07 • COMMERCIAL STRUCTURES
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function EngagementModels() {
         </motion.div>
 
         {/* Two-Column Comparison Card with Rounded Header Bar */}
-        <div className="rounded-2xl overflow-hidden bg-white border border-[#E6E0D6] shadow-sm">
+        <div className="rounded-2xl overflow-hidden bg-[#EDEBE7] border border-[#D5D1C8] shadow-sm">
           {/* Header Bar Split (Vertically Centered & Balanced) */}
           <div className="grid grid-cols-1 md:grid-cols-2 text-white">
             <div className="p-4 sm:p-6 bg-[#2D5A54] md:border-r border-white/20 flex items-center gap-3">
@@ -50,7 +50,7 @@ export default function EngagementModels() {
               </h3>
             </div>
 
-            <div className="p-4 sm:p-6 bg-[#1A3330] flex items-center gap-3">
+            <div className="p-4 sm:p-6 bg-[#23413C] flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-white/40 shrink-0 ring-2 ring-white/30"></span>
               <h3 className="font-deck-headline text-lg sm:text-xl lg:text-2xl tracking-tight text-white">
                 {engagementModelsContent.rightTitle}
@@ -59,7 +59,7 @@ export default function EngagementModels() {
           </div>
 
           {/* Body Columns with Centered Divider */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#E6E0D6] p-4 sm:p-6 lg:p-8 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#D5D1C8] p-4 sm:p-6 lg:p-8 gap-4 lg:gap-6">
             {/* Left Column: Engagement Models */}
             <div className="flex flex-col gap-4 lg:gap-6 justify-between">
               {[

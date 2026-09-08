@@ -9,7 +9,7 @@ const icons = [Layers, Network, LineChart];
 
 export default function WhyPartner() {
   return (
-    <section id="why-partner" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="why-partner" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -17,7 +17,7 @@ export default function WhyPartner() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 08 • VALUE PROPOSITION
           </div>
         </div>
@@ -46,19 +46,19 @@ export default function WhyPartner() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-sm border border-[#E6E0D6] flex flex-col min-h-[340px] sm:min-h-[400px]"
+            className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-sm border border-[#D5D1C8] flex flex-col min-h-[340px] sm:min-h-[400px]"
           >
             <img
               src={whyPartnerContent.image}
               alt="Strategic Partnership"
               className="w-full h-full object-cover flex-1"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A3330]/90 via-[#1A3330]/25 to-transparent flex items-end p-5 sm:p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/90 via-[#23413C]/25 to-transparent flex items-end p-5 sm:p-6">
               <div className="text-white space-y-1.5">
                 <span className="font-deck-headline text-xl sm:text-2xl drop-shadow leading-tight block text-white">
                   TRUSTED PARTNER IN GOA
                 </span>
-                <p className="font-deck-body text-xs sm:text-sm text-[#FAF7F2]">
+                <p className="font-deck-body text-xs sm:text-sm text-[#EDEBE7]">
                   Empowering regional & global stakeholders with precision execution
                 </p>
               </div>

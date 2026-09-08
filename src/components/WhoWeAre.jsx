@@ -9,7 +9,7 @@ const icons = [Radio, Users, Cpu];
 
 export default function WhoWeAre() {
   return (
-    <section id="about" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="about" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -17,7 +17,7 @@ export default function WhoWeAre() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 02 • WHO WE ARE
           </div>
         </div>
@@ -105,14 +105,14 @@ export default function WhoWeAre() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 + idx * 0.08 }}
-              className="relative rounded-2xl overflow-hidden shadow-sm group border border-[#E6E0D6] h-52 sm:h-60 lg:h-72"
+              className="relative rounded-2xl overflow-hidden shadow-sm group border border-[#D5D1C8] h-52 sm:h-60 lg:h-72"
             >
               <img
                 src={img.url}
                 alt={img.caption}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A3330]/85 via-[#1A3330]/25 to-transparent flex items-end p-5 sm:p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/85 via-[#23413C]/25 to-transparent flex items-end p-5 sm:p-6">
                 <span className="font-deck-body text-sm sm:text-base font-bold text-white tracking-wide drop-shadow-md">
                   {img.caption}
                 </span>

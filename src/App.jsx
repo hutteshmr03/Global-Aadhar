@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#F5F1EA] text-[#1A3330] selection:bg-[#2D5A54] selection:text-white">
+    <div className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B] selection:bg-[#2D5A54] selection:text-white">
       {/* Sticky Header */}
       <Navbar />
 

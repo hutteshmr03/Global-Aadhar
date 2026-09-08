@@ -7,7 +7,7 @@ import FeatureCard from './FeatureCard';
 
 export default function WhyGlobalAadhar() {
   return (
-    <section id="why-us" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="why-us" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -15,7 +15,7 @@ export default function WhyGlobalAadhar() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 03 • WHY GLOBAL AADHAR
           </div>
         </div>
@@ -46,33 +46,33 @@ export default function WhyGlobalAadhar() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-5 relative flex flex-col"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-sm border border-[#E6E0D6] flex-1 min-h-[340px] sm:min-h-[400px]">
+            <div className="relative rounded-2xl overflow-hidden shadow-sm border border-[#D5D1C8] flex-1 min-h-[340px] sm:min-h-[400px]">
               <img
                 src={whyGlobalAadharContent.image}
                 alt="Global Aadhar Team"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A3330]/75 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/75 via-transparent to-transparent"></div>
 
               {/* Badges Over Image with Clean Margins */}
-              <div className="absolute top-3 left-3 p-2 sm:p-2.5 rounded-lg bg-white/95 backdrop-blur-md border border-[#E6E0D6] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute top-3 left-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
                 <Camera className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#1A3330]">Media Production</span>
+                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Media Production</span>
               </div>
 
-              <div className="absolute top-3 right-3 p-2 sm:p-2.5 rounded-lg bg-white/95 backdrop-blur-md border border-[#E6E0D6] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute top-3 right-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
                 <Handshake className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#1A3330]">Institutional Trust</span>
+                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Institutional Trust</span>
               </div>
 
-              <div className="absolute bottom-3 left-3 p-2 sm:p-2.5 rounded-lg bg-white/95 backdrop-blur-md border border-[#E6E0D6] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute bottom-3 left-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
                 <Settings className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#1A3330]">Sumant Cloud Tech</span>
+                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Sumant Cloud Tech</span>
               </div>
 
-              <div className="absolute bottom-3 right-3 p-2 sm:p-2.5 rounded-lg bg-white/95 backdrop-blur-md border border-[#E6E0D6] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute bottom-3 right-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
                 <MessageSquare className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#1A3330]">Strategic PR</span>
+                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Strategic PR</span>
               </div>
             </div>
           </motion.div>

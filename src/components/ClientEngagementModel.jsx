@@ -9,7 +9,7 @@ const stepIcons = [Search, Lightbulb, Zap, LineChart];
 
 export default function ClientEngagementModel() {
   return (
-    <section id="engagement-model" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="engagement-model" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -17,7 +17,7 @@ export default function ClientEngagementModel() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 05 • DELIVERY FRAMEWORK
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function ClientEngagementModel() {
         {/* 4-Step Process Bar Container with Centered Dashed Line */}
         <div className="relative">
           {/* Dashed Horizontal Desktop Guide Line */}
-          <div className="hidden lg:block absolute top-6 left-16 right-16 h-[2px] border-t-2 border-dashed border-[#E6E0D6] z-0"></div>
+          <div className="hidden lg:block absolute top-6 left-16 right-16 h-[2px] border-t-2 border-dashed border-[#D5D1C8] z-0"></div>
 
           {/* Steps Grid (Standard Modern SaaS Feature Cards) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 relative z-10 items-stretch">

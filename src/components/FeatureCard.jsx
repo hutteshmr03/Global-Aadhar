@@ -33,7 +33,7 @@ export default function FeatureCard({
   };
 
   return (
-    <div className={`min-w-0 bg-white rounded-2xl border border-[#E6E0D6] shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 p-5 sm:p-6 lg:p-7 flex flex-col justify-between h-full group ${className}`}>
+    <div className={`min-w-0 bg-[#EDEBE7] rounded-2xl border border-[#D5D1C8] shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 p-5 sm:p-6 lg:p-7 flex flex-col justify-between h-full group ${className}`}>
       <div>
         {/* Optional Image Banner (for sector cards or media cards) */}
         {image && (
@@ -43,10 +43,10 @@ export default function FeatureCard({
               alt={title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A3330]/80 via-[#1A3330]/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/80 via-[#23413C]/20 to-transparent"></div>
             {subtitle && (
               <div className="absolute bottom-2.5 left-3.5 right-3.5">
-                <span className="text-[10px] sm:text-[11px] font-bold text-[#FAF7F2] uppercase tracking-wider block drop-shadow">
+                <span className="text-[10px] sm:text-[11px] font-bold text-[#EDEBE7] uppercase tracking-wider block drop-shadow">
                   {subtitle}
                 </span>
               </div>
@@ -70,19 +70,19 @@ export default function FeatureCard({
         </div>
 
         {/* Title */}
-        <h3 className={`${minTitleHeight} flex items-start text-left font-deck-headline text-lg sm:text-xl text-[#1A3330] tracking-tight leading-snug mb-2.5`}>
+        <h3 className={`${minTitleHeight} flex items-start text-left font-deck-headline text-lg sm:text-xl text-[#2D5A54] tracking-tight leading-snug mb-2.5`}>
           {title}
         </h3>
 
         {/* Description */}
         {description && (
-          <p className={`${minDescHeight} text-left font-deck-body text-xs sm:text-sm text-[#4A5856] leading-relaxed mb-4`}>
+          <p className={`${minDescHeight} text-left font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed mb-4`}>
             {description}
           </p>
         )}
 
         {/* Divider */}
-        <div className="w-full border-t border-[#E6E0D6] my-4 sm:my-5"></div>
+        <div className="w-full border-t border-[#D5D1C8] my-4 sm:my-5"></div>
 
         {/* Checklist */}
         {bullets && bullets.length > 0 && (
@@ -94,7 +94,7 @@ export default function FeatureCard({
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="min-w-0 font-deck-body text-xs font-semibold text-[#1A3330] leading-snug text-left break-words">
+                <span className="min-w-0 font-deck-body text-xs font-semibold text-[#2B2B2B] leading-snug text-left break-words">
                   {bullet}
                 </span>
               </div>
@@ -108,7 +108,7 @@ export default function FeatureCard({
         <div className="pt-6 mt-auto">
           <a
             href={ctaHref}
-            className="self-start max-w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-[#2D5A54]/30 text-[#1A3330] font-deck-body font-bold text-[11px] uppercase tracking-wider text-left whitespace-normal break-words hover:bg-[#2D5A54] hover:text-white hover:border-[#2D5A54] transition-all duration-200 shadow-xs group/btn"
+            className="self-start max-w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-[#2D5A54]/30 text-[#2D5A54] font-deck-body font-bold text-[11px] uppercase tracking-wider text-left whitespace-normal break-words hover:bg-[#2D5A54] hover:text-white hover:border-[#2D5A54] transition-all duration-200 shadow-xs group/btn"
           >
             <span>{ctaText}</span>
             <span className="text-[#2D5A54] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform">→</span>

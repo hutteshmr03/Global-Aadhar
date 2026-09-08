@@ -9,7 +9,7 @@ const sectorIcons = [Building, Globe, Landmark];
 
 export default function WhoWeServe() {
   return (
-    <section id="who-we-serve" className="deck-section bg-[#F5F1EA] scroll-mt-32">
+    <section id="who-we-serve" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -17,7 +17,7 @@ export default function WhoWeServe() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#718280]">
+          <div className="text-[#555555]">
             SLIDE 06 • CLIENT SECTORS
           </div>
         </div>
