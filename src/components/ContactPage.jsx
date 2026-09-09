@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, Mail, Phone, User, Send, CheckCircle2, 
-  ArrowDown, ArrowUpRight, ArrowLeft, Clock, ShieldCheck, 
-  Globe, Sparkles, Building2
+  ArrowDown, ArrowUpRight, ArrowLeft, Sparkles
 } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 import confetti from 'canvas-confetti';
@@ -62,7 +61,13 @@ export default function ContactPage({ onNavigateHome }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B]">
+    <motion.div 
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -18 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B]"
+    >
       {/* 1. HERO SECTION (Montfort Eurasia Style Atmospheric Header) */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-16 pb-20 bg-[#23413C] text-white overflow-hidden">
         {/* Subtle Ambient Background Lighting & Noise Gradients */}
@@ -71,7 +76,12 @@ export default function ContactPage({ onNavigateHome }) {
         <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#2D5A54]/20 blur-3xl pointer-events-none"></div>
 
         {/* Top Breadcrumb Navigation */}
-        <div className="relative z-10 mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="relative z-10 mb-8"
+        >
           <button
             onClick={() => onNavigateHome ? onNavigateHome() : (window.location.hash = '#about')}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#EDEBE7] hover:text-white text-xs font-deck-body font-semibold tracking-wider uppercase transition-all duration-200 backdrop-blur-md border border-white/15 cursor-pointer shadow-xs"
@@ -79,13 +89,13 @@ export default function ContactPage({ onNavigateHome }) {
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Return to Presentation Deck</span>
           </button>
-        </div>
+        </motion.div>
 
         {/* Hero Content Container */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55, delay: 0.15 }}
           className="relative z-10 max-w-4xl mx-auto space-y-4 sm:space-y-6"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2D5A54]/60 text-white/90 border border-white/20 text-[10px] sm:text-xs font-deck-body font-bold uppercase tracking-[0.2em]">
@@ -122,10 +132,10 @@ export default function ContactPage({ onNavigateHome }) {
       <section id="contact-details" className="py-16 sm:py-20 lg:py-24 bg-[#E5E3DE] border-b border-[#D5D1C8] scroll-mt-20">
         <div className="deck-container max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="p-8 sm:p-12 lg:p-16 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md text-center space-y-8"
           >
             {/* Agency Name */}
@@ -157,7 +167,7 @@ export default function ContactPage({ onNavigateHome }) {
               {/* Email with Hover Progress Line */}
               <a
                 href={`mailto:${brandMeta.email}`}
-                className="group relative inline-flex flex-col items-center text-sm sm:text-base font-bold text-[#2D5A54] hover:text-[#23413C] transition-colors py-1"
+                className="group relative inline-flex flex-col items-center text-sm sm:text-base font-bold text-[#2D5A54] hover:text-[#23413C] transition-colors py-1 cursor-pointer"
               >
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-[#2D5A54]" />
@@ -171,7 +181,7 @@ export default function ContactPage({ onNavigateHome }) {
               {/* Phone with Hover Progress Line */}
               <a
                 href={`tel:${brandMeta.phone.replace(/\s+/g, '')}`}
-                className="group relative inline-flex flex-col items-center text-sm sm:text-base font-bold text-[#2D5A54] hover:text-[#23413C] transition-colors py-1"
+                className="group relative inline-flex flex-col items-center text-sm sm:text-base font-bold text-[#2D5A54] hover:text-[#23413C] transition-colors py-1 cursor-pointer"
               >
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#2D5A54]" />
@@ -180,41 +190,6 @@ export default function ContactPage({ onNavigateHome }) {
                 <div className="w-full h-[2px] bg-[#D5D1C8] mt-1 relative overflow-hidden">
                   <div className="absolute inset-0 bg-[#2D5A54] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
                 </div>
-              </a>
-            </div>
-
-            {/* Social Channels Row */}
-            <div className="pt-4 flex items-center justify-center gap-3">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn Profile"
-                className="w-10 h-10 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] hover:border-[#2D5A54] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white flex items-center justify-center transition-all duration-200 shadow-xs cursor-pointer group"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                </svg>
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Twitter Profile"
-                className="w-10 h-10 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] hover:border-[#2D5A54] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white flex items-center justify-center transition-all duration-200 shadow-xs cursor-pointer group"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <a
-                href="https://globalaadhar.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Official Website"
-                className="w-10 h-10 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] hover:border-[#2D5A54] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white flex items-center justify-center transition-all duration-200 shadow-xs cursor-pointer"
-              >
-                <Globe className="w-4 h-4" />
               </a>
             </div>
 
@@ -230,7 +205,13 @@ export default function ContactPage({ onNavigateHome }) {
       <section className="py-16 sm:py-20 lg:py-24 bg-[#E5E3DE]">
         <div className="deck-container max-w-3xl mx-auto">
           {/* Section Heading */}
-          <div className="text-center space-y-3 mb-10 sm:mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3 mb-10 sm:mb-12"
+          >
             <span className="font-deck-body text-[11px] font-bold text-[#2D5A54] uppercase tracking-[0.2em] block">
               ENGAGEMENT INQUIRY
             </span>
@@ -240,10 +221,16 @@ export default function ContactPage({ onNavigateHome }) {
             <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-lg mx-auto leading-relaxed">
               Have a project, campaign, or strategic requirement in mind? Share your brief and our team in Panjim will get in touch.
             </p>
-          </div>
+          </motion.div>
 
           {/* Form Card */}
-          <div className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md">
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md"
+          >
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -413,51 +400,7 @@ export default function ContactPage({ onNavigateHome }) {
                 </div>
               </form>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. OFFICE BUREAU & OPERATIONAL ASSURANCE (Value Details Grid) */}
-      <section className="py-14 sm:py-18 bg-[#EDEBE7] border-t border-[#D5D1C8]">
-        <div className="deck-container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-[#E5E3DE] border border-[#D5D1C8] space-y-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center">
-                <Clock className="w-4 h-4" />
-              </div>
-              <h3 className="font-deck-headline text-lg text-[#2D5A54]">
-                Operating Hours
-              </h3>
-              <p className="font-deck-body text-xs text-[#2B2B2B] leading-relaxed">
-                Monday – Friday: 9:30 AM – 6:30 PM IST.<br />
-                Emergency crisis communication support available 24/7 for active retainers.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-[#E5E3DE] border border-[#D5D1C8] space-y-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <h3 className="font-deck-headline text-lg text-[#2D5A54]">
-                Panjim Headquarters
-              </h3>
-              <p className="font-deck-body text-xs text-[#2B2B2B] leading-relaxed">
-                Conveniently located at Municipal Garden, Panjim with meeting spaces for confidential corporate & institutional briefings.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-[#E5E3DE] border border-[#D5D1C8] space-y-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <h3 className="font-deck-headline text-lg text-[#2D5A54]">
-                Confidentiality Assurance
-              </h3>
-              <p className="font-deck-body text-xs text-[#2B2B2B] leading-relaxed">
-                All communications and campaign briefs are protected by standard non-disclosure protocols and rigorous institutional governance.
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -482,6 +425,7 @@ export default function ContactPage({ onNavigateHome }) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
+
