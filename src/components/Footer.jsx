@@ -2,9 +2,26 @@ import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
-export default function Footer() {
+export default function Footer({ currentPage = 'home', onNavigateContact, onNavigateHome, onNavigateSection }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
+    if (href === '#contact') {
+      if (onNavigateContact) onNavigateContact();
+      else window.location.hash = '#contact';
+    } else {
+      if (onNavigateSection) onNavigateSection(href);
+      else window.location.hash = href;
+    }
+  };
+
+  const handleBrandClick = (e) => {
+    e.preventDefault();
+    if (onNavigateHome) onNavigateHome();
+    else window.location.hash = '';
   };
 
   return (
@@ -14,14 +31,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[#D5D1C8]">
           {/* Brand Col */}
           <div className="md:col-span-6 space-y-3">
-            <div className="flex flex-col">
-              <div className="font-deck-headline text-xl sm:text-2xl text-[#2D5A54] tracking-tight leading-none">
+            <a href="#" onClick={handleBrandClick} className="flex flex-col group cursor-pointer text-decoration-none">
+              <div className="font-deck-headline text-xl sm:text-2xl text-[#2D5A54] tracking-tight leading-none group-hover:opacity-90 transition-opacity">
                 GLOBAL AADHAR
               </div>
               <div className="text-[10px] font-bold text-[#2D5A54] tracking-[0.16em] uppercase mt-0.5">
                 STRATEGIC COMMUNICATIONS
               </div>
-            </div>
+            </a>
 
             <p className="text-xs text-[#2B2B2B] max-w-md leading-relaxed pt-1">
               A Goa-based Public Relations and Strategic Communications company delivering integrated media, stakeholder engagement, and communications solutions that connect opportunities and drive measurable impact.
@@ -34,12 +51,13 @@ export default function Footer() {
               Navigation
             </div>
             <ul className="space-y-1.5 text-[#2B2B2B]">
-              <li><a href="#about" className="hover:text-[#2D5A54] transition-colors">Who We Are</a></li>
-              <li><a href="#why-us" className="hover:text-[#2D5A54] transition-colors">Why Global Aadhar</a></li>
-              <li><a href="#services" className="hover:text-[#2D5A54] transition-colors">Our Six Core Services</a></li>
-              <li><a href="#engagement-model" className="hover:text-[#2D5A54] transition-colors">Client Engagement Model</a></li>
-              <li><a href="#who-we-serve" className="hover:text-[#2D5A54] transition-colors">Who We Serve</a></li>
-              <li><a href="#models" className="hover:text-[#2D5A54] transition-colors">Commercial Models</a></li>
+              <li><a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Who We Are</a></li>
+              <li><a href="#why-us" onClick={(e) => handleLinkClick(e, '#why-us')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Why Global Aadhar</a></li>
+              <li><a href="#services" onClick={(e) => handleLinkClick(e, '#services')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Our Six Core Services</a></li>
+              <li><a href="#engagement-model" onClick={(e) => handleLinkClick(e, '#engagement-model')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Client Engagement Model</a></li>
+              <li><a href="#who-we-serve" onClick={(e) => handleLinkClick(e, '#who-we-serve')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Who We Serve</a></li>
+              <li><a href="#models" onClick={(e) => handleLinkClick(e, '#models')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Commercial Models</a></li>
+              <li><a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="hover:text-[#2D5A54] font-bold transition-colors cursor-pointer">Contact & Desk</a></li>
             </ul>
           </div>
 
@@ -60,7 +78,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#555555]">
           <div>
-            © {new Date().getFullYear()} {brandMeta.name}. All rights reserved. Pitch deck proof of concept.
+            © {new Date().getFullYear()} {brandMeta.name}. All rights reserved. Strategic Communications.
           </div>
 
           <button

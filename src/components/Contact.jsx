@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, User, Send, CheckCircle2 } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
-export default function Contact() {
+export default function Contact({ onNavigateContact }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +25,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="deck-section bg-[#E5E3DE] scroll-mt-32">
+    <section id="contact-overview" className="deck-section bg-[#E5E3DE] scroll-mt-32">
       <div className="deck-container">
         {/* Slide Header */}
         <div className="slide-header-bar">
@@ -44,14 +44,26 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-8 sm:mb-10 space-y-3 max-w-3xl"
+          className="mb-8 sm:mb-10 space-y-3 max-w-3xl flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
-          <h2 className="deck-section-title">
-            LET'S BUILD IMPACT TOGETHER
-          </h2>
-          <p className="deck-section-intro">
-            Connect with our leadership team in Panjim, Goa for strategic PR consultations, media campaigns, or institutional partnerships.
-          </p>
+          <div>
+            <h2 className="deck-section-title">
+              LET'S BUILD IMPACT TOGETHER
+            </h2>
+            <p className="deck-section-intro">
+              Connect with our leadership team in Panjim, Goa for strategic PR consultations, media campaigns, or institutional partnerships.
+            </p>
+          </div>
+
+          {onNavigateContact && (
+            <button
+              onClick={onNavigateContact}
+              className="btn-primary-teal text-xs py-2.5 px-5 shrink-0 shadow-xs cursor-pointer"
+            >
+              <span>Dedicated Contact Page</span>
+              <Send className="w-3.5 h-3.5 ml-1.5" />
+            </button>
+          )}
         </motion.div>
 
         {/* 2-Column Grid: Left Contact Card & Right Form */}

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, User, ArrowUpRight } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
-export default function Hero() {
+export default function Hero({ onNavigateContact }) {
   return (
     <section className="relative pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-[#E5E3DE]">
       <div className="deck-container">
@@ -58,7 +58,13 @@ export default function Hero() {
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <a
                 href="#contact"
-                className="btn-primary-teal text-xs px-6 py-2.5 shadow-md"
+                onClick={(e) => {
+                  if (onNavigateContact) {
+                    e.preventDefault();
+                    onNavigateContact();
+                  }
+                }}
+                className="btn-primary-teal text-xs px-6 py-2.5 shadow-md cursor-pointer"
               >
                 <span>Let's Talk</span>
                 <ArrowRight className="w-3.5 h-3.5" />
