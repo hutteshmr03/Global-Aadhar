@@ -1,31 +1,33 @@
 import React from 'react';
 import { tickerNews } from '../data/mockData';
+import { Radio } from 'lucide-react';
 
 export default function Ticker() {
   return (
-    <div className="w-full bg-[var(--bg-surface-alt)] border-b border-[var(--border-main)] py-3.5 sm:py-4 overflow-hidden select-none transition-colors duration-300">
-      <div className="pulse-container flex items-center gap-5">
-        {/* Static Wire Header Badge */}
-        <div className="shrink-0 flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-main)] font-mono-data text-[10px] font-black uppercase tracking-wider shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-red)] animate-ping"></span>
-          <span>WIRE FEED</span>
+    <div className="w-full bg-[#EDEBE7] border-y border-[#D5D1C8] py-3 overflow-hidden select-none">
+      <div className="deck-container flex items-center gap-4 sm:gap-6">
+        {/* Regional Press Wire Badge */}
+        <div className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2D5A54] text-white font-deck-body text-[10px] font-bold uppercase tracking-wider shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-ping"></span>
+          <Radio className="w-3 h-3 text-white" />
+          <span>PRESS WIRE</span>
         </div>
 
         {/* Infinite Scrolling Ticker Track */}
-        <div className="overflow-hidden flex-1 relative [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-          <div className="ticker-track flex items-center font-mono-data text-xs font-medium text-[var(--text-secondary)]">
+        <div className="overflow-hidden flex-1 relative [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+          <div className="ticker-track flex items-center font-deck-body text-xs font-semibold text-[#2B2B2B]">
             {[...tickerNews, ...tickerNews].map((item, idx) => (
-              <div key={idx} className="flex items-center whitespace-nowrap pl-7 pr-7">
-                <span className="font-bold text-[var(--accent-red)] uppercase text-[10.5px] px-2.5 py-0.5 rounded bg-[var(--accent-badge)] mr-3 shrink-0">
+              <div key={idx} className="flex items-center whitespace-nowrap pl-6 pr-6">
+                <span className="font-bold text-[#2D5A54] uppercase text-[10px] px-2.5 py-0.5 rounded-md bg-[#E5E3DE] border border-[#D5D1C8] mr-2.5 shrink-0 tracking-wider">
                   {item.tag}
                 </span>
-                <span className="text-[var(--text-primary)] font-medium mr-2.5">
+                <span className="text-[#2B2B2B] font-medium mr-2">
                   {item.text}
                 </span>
-                <span className="text-[var(--text-muted)] text-[10.5px] mr-6">
+                <span className="text-[#555555] text-[10px] font-normal mr-5">
                   ({item.time})
                 </span>
-                <span className="text-[var(--border-main)] font-mono text-sm select-none">/</span>
+                <span className="text-[#D5D1C8] font-bold select-none">•</span>
               </div>
             ))}
           </div>

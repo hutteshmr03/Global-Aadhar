@@ -13,6 +13,7 @@ export default function FeatureCard({
   bullets = [],
   ctaText = "Explore Solution",
   ctaHref = "#contact",
+  onCtaClick,
   minTitleHeight = "min-h-[2.5rem] sm:min-h-[2.75rem]",
   minDescHeight = "min-h-[3.25rem] sm:min-h-[3.75rem]",
   image,
@@ -30,6 +31,13 @@ export default function FeatureCard({
     }
     const IconComponent = IconOrString;
     return <IconComponent className="w-4 h-4 text-[#2D5A54]" />;
+  };
+
+  const handleButtonClick = (e) => {
+    if (onCtaClick) {
+      e.preventDefault();
+      onCtaClick(e);
+    }
   };
 
   return (
@@ -108,7 +116,8 @@ export default function FeatureCard({
         <div className="pt-6 mt-auto">
           <a
             href={ctaHref}
-            className="self-start max-w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-[#2D5A54]/30 text-[#2D5A54] font-deck-body font-bold text-[11px] uppercase tracking-wider text-left whitespace-normal break-words hover:bg-[#2D5A54] hover:text-white hover:border-[#2D5A54] transition-all duration-200 shadow-xs group/btn"
+            onClick={handleButtonClick}
+            className="self-start max-w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-[#2D5A54]/30 text-[#2D5A54] font-deck-body font-bold text-[11px] uppercase tracking-wider text-left whitespace-normal break-words hover:bg-[#2D5A54] hover:text-white hover:border-[#2D5A54] transition-all duration-200 shadow-xs group/btn cursor-pointer"
           >
             <span>{ctaText}</span>
             <span className="text-[#2D5A54] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform">→</span>

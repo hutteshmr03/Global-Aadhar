@@ -1,9 +1,27 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, MapPin, User, ArrowUpRight } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
+const heroHeadlines = [
+  { primary: 'BUILDING TRUST.', secondary: 'CREATING IMPACT.' },
+  { primary: 'AMPLIFYING REACH.', secondary: 'CONNECTING OPPORTUNITIES.' },
+  { primary: 'SHAPING NARRATIVES.', secondary: 'DELIVERING VALUE.' },
+  { primary: 'INSPIRING CONFIDENCE.', secondary: 'DRIVING CHANGE.' }
+];
+
 export default function Hero({ onNavigateContact }) {
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeadlineIndex((prev) => (prev + 1) % heroHeadlines.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentHeadline = heroHeadlines[headlineIndex];
+
   return (
     <section className="relative pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-[#E5E3DE]">
       <div className="deck-container">
@@ -40,14 +58,25 @@ export default function Hero({ onNavigateContact }) {
               </span>
             </div>
 
-            {/* Impact Headline & Subtext */}
-            <div className="space-y-3.5 max-w-3xl">
-              <h2 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-[#2D5A54] tracking-tight leading-snug">
-                BUILDING TRUST. <br />
-                <span className="text-[#23413C] underline decoration-[#2D5A54] decoration-2 sm:decoration-4 underline-offset-6">
-                  CREATING IMPACT.
-                </span>
-              </h2>
+            {/* Impact Headline Cycler & Subtext */}
+            <div className="space-y-3.5 max-w-3xl min-h-[140px] sm:min-h-[160px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={headlineIndex}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.45, ease: 'easeInOut' }}
+                  className="space-y-1"
+                >
+                  <h2 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-[#2D5A54] tracking-tight leading-snug">
+                    {currentHeadline.primary} <br />
+                    <span className="text-[#23413C] underline decoration-[#2D5A54] decoration-2 sm:decoration-4 underline-offset-6">
+                      {currentHeadline.secondary}
+                    </span>
+                  </h2>
+                </motion.div>
+              </AnimatePresence>
 
               <p className="font-deck-body text-xs sm:text-sm lg:text-base text-[#2B2B2B] leading-relaxed pt-1 max-w-2xl">
                 A Goa-based Public Relations and Strategic Communications company delivering integrated media, stakeholder engagement, and communications solutions that connect opportunities and drive measurable impact.

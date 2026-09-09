@@ -67,6 +67,7 @@ export const coreServicesContent = {
       number: "01",
       title: "GOVERNMENT RELATIONS",
       tagline: "Bridging institutions, departments, and communities through strategic coordination, responsible communication, and meaningful public engagement.",
+      image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
       items: [
         {
           title: "Stakeholder Coordination",
@@ -87,6 +88,7 @@ export const coreServicesContent = {
       number: "02",
       title: "MEDIA PRODUCTION & PR",
       tagline: "We craft compelling narratives through press releases, interviews, documentaries, and corporate films — amplifying your brand's voice across every media channel with strategic precision.",
+      image: "https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=800&q=80",
       items: [
         {
           title: "TV & Digital Media",
@@ -106,7 +108,22 @@ export const coreServicesContent = {
       id: "events-experiences",
       number: "03",
       title: "EVENTS & EXPERIENCES",
-      tagline: "Flawless on-ground execution and experiential campaigns connecting audiences and stakeholders.",
+      tagline: "Flawless on-ground execution and experiential campaigns connecting audiences and stakeholders across Goa and Western India.",
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+      items: [
+        {
+          title: "Strategic Event Planning",
+          description: "Press conferences, product launches, government programs, and CSR events — meticulously planned with defined objectives, audience mapping, and strategic messaging frameworks."
+        },
+        {
+          title: "Venue & Production Staging",
+          description: "End-to-end production including venue management, AV setup, branding, logistics, speaker coordination, and media invitations for conferences, seminars, and institutional summits."
+        },
+        {
+          title: "Execution & Media Amplification",
+          description: "Seamless on-ground execution paired with post-event press releases, social media highlights, photo/video documentation, and stakeholder impact reports."
+        }
+      ],
       processSteps: [
         {
           step: "Plan",
@@ -131,6 +148,7 @@ export const coreServicesContent = {
       number: "04",
       title: "CSR COMMUNICATION",
       tagline: "Global Aadhar transforms CSR initiatives into powerful narratives — turning community investments into credible, visible impact through strategic communication, beneficiary stories, and measurable reporting.",
+      image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
       items: [
         {
           title: "Project Storytelling",
@@ -150,6 +168,22 @@ export const coreServicesContent = {
       id: "digital-marketing",
       number: "05",
       title: "DIGITAL MARKETING",
+      tagline: "Connecting PR strategy with powerful digital growth, social media branding, video production, and search engine visibility.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      items: [
+        {
+          title: "LinkedIn & Brand Building",
+          description: "Social media management, content creation, executive thought leadership, and online reputation management across high-trust professional platforms."
+        },
+        {
+          title: "Video Production & SEO",
+          description: "High-impact video content, YouTube optimization, and search engine strategies driving sustained visibility and top-of-mind brand recall."
+        },
+        {
+          title: "Campaign Analytics & ROI",
+          description: "Targeted digital PR campaigns, conversion tracking, media sentiment analytics, and transparent digital performance reporting."
+        }
+      ],
       copy: "Global Aadhar connects PR strategy with powerful digital growth. We build your brand's presence across social media, video, and search — creating content that engages audiences and drives measurable results across every digital touchpoint. From LinkedIn thought leadership and SEO-driven content to online reputation management and campaign analytics, our integrated digital approach ensures your communications deliver consistent impact and sustained visibility in an evolving media landscape.",
       callouts: [
         "Social media, content creation & LinkedIn brand building",
@@ -169,6 +203,7 @@ export const coreServicesContent = {
       number: "06",
       title: "TECHNOLOGY SOLUTIONS",
       intro: "Powered by Sumant Cloud, our technology arm delivers end-to-end digital infrastructure — from custom software to enterprise dashboards — enabling seamless digital transformation for organisations across Goa and beyond.",
+      image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80",
       items: [
         {
           title: "Web & Software Development",

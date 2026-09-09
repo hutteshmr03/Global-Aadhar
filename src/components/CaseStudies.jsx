@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import { caseStudies } from '../data/mockData';
-import { Briefcase, Newspaper } from 'lucide-react';
+import { Briefcase, Newspaper, ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export default function CaseStudies({ onOpenBooking }) {
+export default function CaseStudies({ onNavigateContact }) {
   const [selectedCase, setSelectedCase] = useState(caseStudies[0].id);
 
   const activeCase = caseStudies.find(c => c.id === selectedCase) || caseStudies[0];
 
   return (
-    <section id="case-studies" className="section-wrapper bg-slate-900/40">
-      <div className="main-container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="badge-pill">
-            <Briefcase className="w-3.5 h-3.5 text-purple-400" />
-            <span>Proven Media Track Record</span>
+    <section id="case-studies" className="py-14 sm:py-18 lg:py-22 bg-[#E5E3DE] border-b border-[#D5D1C8]">
+      <div className="deck-container">
+        {/* Slide Header Bar */}
+        <div className="slide-header-bar">
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
+            <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
+            <span>PROVEN TRACK RECORD & CASE STUDIES</span>
           </div>
-          <h2 className="section-title">
-            Headlines That Driven <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-300">
-              Transformational Market Impact
-            </span>
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest">
+            REGIONAL IMPACT ARCHIVE
+          </div>
+        </div>
+
+        {/* Section Heading */}
+        <div className="mb-8 sm:mb-10 space-y-2">
+          <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
+            Strategic PR Campaigns That Delivered Measurable Impact
           </h2>
-          <p className="section-desc">
-            Explore how we secured front-page editorial dominance, steered crisis narratives, and generated hundreds of millions in brand equity.
+          <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-2xl leading-relaxed">
+            Examine how Global Aadhar engineered editorial dominance, steered institutional narratives, and integrated digital systems for clients across Western India.
           </p>
         </div>
 
-        {/* Case Study Cards Grid */}
+        {/* Case Study Selection Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {caseStudies.map((study) => {
             const isSelected = selectedCase === study.id;
@@ -35,45 +39,45 @@ export default function CaseStudies({ onOpenBooking }) {
               <div
                 key={study.id}
                 onClick={() => setSelectedCase(study.id)}
-                className={`p-4 rounded-2xl cursor-pointer transition-all border relative flex flex-col justify-between ${
+                className={`p-5 rounded-2xl cursor-pointer transition-all border relative flex flex-col justify-between ${
                   isSelected
-                    ? 'glass-panel border-indigo-500/60 shadow-md -translate-y-0.5'
-                    : 'glass-card border-slate-800 hover:border-slate-700'
+                    ? 'bg-[#EDEBE7] border-[#2D5A54] shadow-md -translate-y-0.5'
+                    : 'bg-[#EDEBE7]/60 border-[#D5D1C8] hover:border-[#2D5A54]/60 hover:bg-[#EDEBE7]'
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-bold text-indigo-400 tracking-wider uppercase">
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className="text-[10px] font-bold text-[#2D5A54] tracking-wider uppercase font-deck-body">
                       {study.category}
                     </span>
-                    <span className="text-[9px] font-semibold px-2 py-0.2 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                      {study.client}
+                    <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8]">
+                      {study.client.split('&')[0]}
                     </span>
                   </div>
 
-                  <h3 className="text-xs sm:text-sm font-bold text-white leading-snug mb-1.5">
+                  <h3 className="font-deck-headline text-sm sm:text-base text-[#2D5A54] leading-snug mb-2">
                     {study.headline}
                   </h3>
 
-                  <p className="text-[11px] text-slate-400 line-clamp-2 mb-2.5">
+                  <p className="font-deck-body text-xs text-[#2B2B2B] line-clamp-2 mb-3 leading-relaxed">
                     {study.summary}
                   </p>
                 </div>
 
-                {/* Placements badges */}
-                <div className="pt-2.5 border-t border-slate-800 flex items-center justify-between">
-                  <div className="flex items-center gap-1 flex-wrap">
-                    {study.featuredIn.slice(0, 3).map((pub, idx) => (
+                {/* Placements Badges */}
+                <div className="pt-3 border-t border-[#D5D1C8] flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {study.featuredIn.slice(0, 2).map((pub, idx) => (
                       <span
                         key={idx}
-                        className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-300 border border-indigo-500/20"
+                        className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-[#E5E3DE] text-[#2D5A54] border border-[#D5D1C8]"
                       >
                         {pub}
                       </span>
                     ))}
                   </div>
-                  <span className={`text-[11px] font-bold ${isSelected ? 'text-indigo-400' : 'text-slate-400'}`}>
-                    View Details →
+                  <span className={`text-xs font-bold font-deck-body ${isSelected ? 'text-[#2D5A54]' : 'text-[#555555]'}`}>
+                    {isSelected ? 'Active View' : 'Explore →'}
                   </span>
                 </div>
               </div>
@@ -81,43 +85,44 @@ export default function CaseStudies({ onOpenBooking }) {
           })}
         </div>
 
-        {/* Expanded Deep Dive Section */}
-        <div className="glass-panel p-5 sm:p-7 border border-indigo-500/30 relative overflow-hidden">
+        {/* Deep Dive Feature Panel */}
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#EDEBE7] border border-[#2D5A54] shadow-md relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-7 space-y-3.5">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-950 border border-indigo-500/30 text-indigo-300 text-[10px] font-bold">
-                <Newspaper className="w-3 h-3" />
-                Featured Campaign: {activeCase.client}
+            {/* Story & Quote Column */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] text-[#2D5A54] text-xs font-bold font-deck-body uppercase tracking-wider">
+                <Newspaper className="w-3.5 h-3.5" />
+                <span>Featured Campaign: {activeCase.client}</span>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+              <h3 className="font-deck-headline text-xl sm:text-2xl text-[#2D5A54] leading-snug">
                 {activeCase.headline}
               </h3>
 
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
                 {activeCase.summary}
               </p>
 
               {/* Quote */}
-              <div className="p-3 rounded-2xl bg-slate-900 border-l-4 border-indigo-500 space-y-1">
-                <p className="text-xs italic text-slate-200 font-medium">
-                  {activeCase.quote}
+              <div className="p-4 rounded-xl bg-[#E5E3DE] border-l-4 border-[#2D5A54] space-y-1">
+                <p className="font-deck-body text-xs sm:text-sm italic text-[#2B2B2B] font-medium leading-relaxed">
+                  "{activeCase.quote}"
                 </p>
-                <div className="text-[10px] font-bold text-indigo-400">
+                <div className="text-[11px] font-bold text-[#2D5A54] font-deck-body pt-1">
                   — {activeCase.author}
                 </div>
               </div>
             </div>
 
-            {/* Metrics column */}
-            <div className="lg:col-span-5 space-y-2.5">
-              <div className="grid grid-cols-2 gap-2">
+            {/* Metrics & Action Column */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="grid grid-cols-2 gap-3">
                 {activeCase.metrics.map((m, idx) => (
-                  <div key={idx} className="p-3 rounded-2xl bg-slate-950 border border-slate-800 text-center">
-                    <div className="text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-cyan-300">
+                  <div key={idx} className="p-3.5 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-center">
+                    <div className="font-deck-headline text-xl sm:text-2xl text-[#2D5A54]">
                       {m.value}
                     </div>
-                    <div className="text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <div className="text-[10px] font-bold text-[#555555] font-deck-body mt-1 uppercase tracking-wider">
                       {m.label}
                     </div>
                   </div>
@@ -125,10 +130,14 @@ export default function CaseStudies({ onOpenBooking }) {
               </div>
 
               <button
-                onClick={onOpenBooking}
-                className="w-full btn-primary text-xs py-2"
+                onClick={() => {
+                  if (onNavigateContact) onNavigateContact();
+                  else window.location.hash = '#contact';
+                }}
+                className="w-full btn-primary-teal text-xs py-3 justify-center shadow-md cursor-pointer"
               >
-                Secure Similar Media Results for Your Brand
+                <span>Initiate A Similar Campaign Strategy</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>

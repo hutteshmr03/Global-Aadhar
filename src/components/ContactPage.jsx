@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, Mail, Phone, User, Send, CheckCircle2, 
-  ArrowDown, ArrowUpRight, ArrowLeft, Sparkles
+  ArrowDown, ArrowUpRight, ArrowLeft, Sparkles, Calendar, Clock, Navigation
 } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 import confetti from 'canvas-confetti';
+
+const timeSlots = [
+  '10:30 AM – 10:45 AM',
+  '11:45 AM – 12:00 PM',
+  '02:30 PM – 02:45 PM',
+  '04:00 PM – 04:15 PM',
+  '05:15 PM – 05:30 PM'
+];
 
 export default function ContactPage({ onNavigateHome }) {
   const [formData, setFormData] = useState({
@@ -19,6 +27,13 @@ export default function ContactPage({ onNavigateHome }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+
+  // Discovery Call State
+  const [selectedDate, setSelectedDate] = useState('Today (Priority)');
+  const [selectedSlot, setSelectedSlot] = useState(timeSlots[0]);
+  const [callBooked, setCallBooked] = useState(false);
+  const [bookingName, setBookingName] = useState('');
+  const [bookingEmail, setBookingEmail] = useState('');
 
   const serviceOptions = [
     "Strategic PR & Media",
@@ -48,9 +63,21 @@ export default function ContactPage({ onNavigateHome }) {
           origin: { y: 0.6 }
         });
       } catch (err) {
-        // Fallback gracefully if canvas-confetti fails
+        // Fallback gracefully
       }
     }, 600);
+  };
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    setCallBooked(true);
+    try {
+      confetti({
+        particleCount: 50,
+        spread: 50,
+        origin: { y: 0.5 }
+      });
+    } catch (err) {}
   };
 
   const scrollToDetails = () => {
@@ -69,7 +96,7 @@ export default function ContactPage({ onNavigateHome }) {
       className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B]"
     >
       {/* 1. HERO SECTION (Montfort Eurasia Style Atmospheric Header) */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-16 pb-20 bg-[#23413C] text-white overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[68vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-16 pb-20 bg-[#23413C] text-white overflow-hidden">
         {/* Subtle Ambient Background Lighting & Noise Gradients */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,90,84,0.45)_0%,_rgba(35,65,60,0.95)_70%,_rgba(20,38,35,1)_100%)] pointer-events-none"></div>
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#2D5A54]/25 blur-3xl pointer-events-none"></div>
@@ -128,20 +155,21 @@ export default function ContactPage({ onNavigateHome }) {
         </motion.div>
       </section>
 
-      {/* 2. DIRECT CONTACT INFO (Montfort Eurasia Style Centered Agency Card) */}
+      {/* 2. DIRECT CONTACT INFO & INTERACTIVE MAP (Montfort Eurasia Style Centered Agency Card) */}
       <section id="contact-details" className="py-16 sm:py-20 lg:py-24 bg-[#E5E3DE] border-b border-[#D5D1C8] scroll-mt-20">
-        <div className="deck-container max-w-4xl mx-auto">
+        <div className="deck-container max-w-5xl mx-auto space-y-8">
+          {/* Main Headquarters Card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="p-8 sm:p-12 lg:p-16 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md text-center space-y-8"
+            className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md text-center space-y-8"
           >
             {/* Agency Name */}
             <div className="space-y-1">
               <span className="font-deck-body text-xs font-bold text-[#2D5A54] uppercase tracking-[0.25em] block">
-                HEADQUARTERS
+                HEADQUARTERS & PANJIM BUREAU
               </span>
               <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
                 {brandMeta.name}
@@ -155,7 +183,7 @@ export default function ContactPage({ onNavigateHome }) {
             <div className="max-w-md mx-auto space-y-1 font-deck-body text-sm sm:text-base text-[#2B2B2B] leading-relaxed">
               <div className="flex items-center justify-center gap-2 text-[#2D5A54] mb-1">
                 <MapPin className="w-4 h-4" />
-                <span className="font-bold text-xs uppercase tracking-wider">Panjim Bureau</span>
+                <span className="font-bold text-xs uppercase tracking-wider">Prime Location</span>
               </div>
               <p className="font-medium text-[#2B2B2B]">
                 {brandMeta.address}
@@ -198,10 +226,191 @@ export default function ContactPage({ onNavigateHome }) {
               Executive Lead: <strong className="text-[#2D5A54]">{brandMeta.presentedBy}</strong>
             </div>
           </motion.div>
+
+          {/* Interactive Panjim Bureau Map Visual Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="p-6 sm:p-8 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md flex flex-col md:flex-row items-center justify-between gap-6"
+          >
+            <div className="space-y-2 max-w-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] text-[#2D5A54] text-xs font-bold font-deck-body uppercase tracking-wider">
+                <Navigation className="w-3.5 h-3.5" />
+                <span>Panjim Bureau Map & Landmark</span>
+              </div>
+              <h3 className="font-deck-headline text-xl text-[#2D5A54]">
+                Opposite Municipal Garden, Panjim
+              </h3>
+              <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
+                Centrally positioned in the historic heart of Goa's capital city, providing immediate access to state administration, media desks, and corporate partners.
+              </p>
+              <div className="text-[11px] font-mono font-bold text-[#555555] pt-1">
+                COORDINATES: 15.4989° N, 73.8278° E • PANJIM, GOA
+              </div>
+            </div>
+
+            <div className="shrink-0 w-full md:w-auto">
+              <a
+                href="https://maps.google.com/?q=Municipal+Garden+Panjim+Goa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary-teal text-xs py-3 px-6 w-full md:w-auto justify-center shadow-md cursor-pointer"
+              >
+                <span>Open in Google Maps</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 3. MESSAGE FORM SECTION ("Leave us a message" Montfort Eurasia Style) */}
+      {/* 3. 15-MINUTE STRATEGIC DISCOVERY CALL SCHEDULER */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#E5E3DE] border-b border-[#D5D1C8]">
+        <div className="deck-container max-w-4xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3 mb-10 sm:mb-12"
+          >
+            <span className="font-deck-body text-[11px] font-bold text-[#2D5A54] uppercase tracking-[0.2em] block">
+              INSTANT LEADERSHIP CONSULTATION
+            </span>
+            <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
+              Schedule a 15-Minute Strategic Discovery Call
+            </h2>
+            <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-lg mx-auto leading-relaxed">
+              Connect directly with <strong className="text-[#2D5A54]">Amol K Arondekar</strong>, Partner at Global Aadhar, to discuss your campaign scope, media relations, or tech integration.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="p-6 sm:p-10 rounded-3xl bg-[#EDEBE7] border border-[#2D5A54] shadow-md"
+          >
+            {callBooked ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-14 h-14 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] border border-[#2D5A54]/20 mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-7 h-7" />
+                </div>
+                <h3 className="font-deck-headline text-2xl text-[#2D5A54]">
+                  Discovery Call Confirmed!
+                </h3>
+                <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-md mx-auto leading-relaxed">
+                  Thank you, <strong className="text-[#2D5A54]">{bookingName}</strong>. A calendar invite for <strong className="text-[#2D5A54]">{selectedDate} at {selectedSlot}</strong> has been sent to <span className="font-semibold text-[#2D5A54]">{bookingEmail}</span>.
+                </p>
+                <div className="pt-2">
+                  <button
+                    onClick={() => setCallBooked(false)}
+                    className="btn-secondary-outline text-xs py-2 px-5"
+                  >
+                    Reschedule or Book Another Slot
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleBookingSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Date Selector */}
+                  <div>
+                    <label className="block font-deck-body text-xs font-bold uppercase tracking-wider text-[#2D5A54] mb-2 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" /> Select Preferred Day
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['Today (Priority)', 'Tomorrow', 'This Thursday', 'Next Week'].map((day) => (
+                        <button
+                          key={day}
+                          type="button"
+                          onClick={() => setSelectedDate(day)}
+                          className={`p-2.5 rounded-xl text-xs font-deck-body font-semibold transition-all cursor-pointer ${
+                            selectedDate === day
+                              ? 'bg-[#2D5A54] text-white shadow-xs'
+                              : 'bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54]'
+                          }`}
+                        >
+                          {day}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Slot Selector */}
+                  <div>
+                    <label className="block font-deck-body text-xs font-bold uppercase tracking-wider text-[#2D5A54] mb-2 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" /> Select 15-Min Slot (IST)
+                    </label>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      {timeSlots.map((slot) => (
+                        <button
+                          key={slot}
+                          type="button"
+                          onClick={() => setSelectedSlot(slot)}
+                          className={`p-2 rounded-xl text-xs font-deck-body font-semibold text-left px-3 transition-all cursor-pointer ${
+                            selectedSlot === slot
+                              ? 'bg-[#2D5A54] text-white shadow-xs'
+                              : 'bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54]'
+                          }`}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Name & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div>
+                    <label className="block font-deck-body text-xs font-bold uppercase tracking-wider text-[#2D5A54] mb-1.5">
+                      Your Name *
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="e.g. Priya Naik"
+                      value={bookingName}
+                      onChange={(e) => setBookingName(e.target.value)}
+                      className="w-full h-11 px-4 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-sm focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-deck-body text-xs font-bold uppercase tracking-wider text-[#2D5A54] mb-1.5">
+                      Work Email *
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="priya@organization.com"
+                      value={bookingEmail}
+                      onChange={(e) => setBookingEmail(e.target.value)}
+                      className="w-full h-11 px-4 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-sm focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors"
+                    />
+                  </div>
+                </div>
+
+                {/* Confirm Button */}
+                <div className="pt-2 text-center">
+                  <button
+                    type="submit"
+                    className="btn-primary-teal text-xs py-3 px-8 shadow-md uppercase tracking-wider font-bold mx-auto cursor-pointer"
+                  >
+                    <span>Confirm 15-Minute Strategic Call</span>
+                    <Sparkles className="w-3.5 h-3.5 ml-2" />
+                  </button>
+                </div>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 4. MESSAGE FORM SECTION ("Leave us a message" Montfort Eurasia Style) */}
       <section className="py-16 sm:py-20 lg:py-24 bg-[#E5E3DE]">
         <div className="deck-container max-w-3xl mx-auto">
           {/* Section Heading */}
@@ -428,4 +637,3 @@ export default function ContactPage({ onNavigateHome }) {
     </motion.div>
   );
 }
-

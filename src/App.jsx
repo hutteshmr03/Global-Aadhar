@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Ticker from './components/Ticker';
 import WhoWeAre from './components/WhoWeAre';
 import WhyGlobalAadhar from './components/WhyGlobalAadhar';
 import Services from './components/Services';
+import ServiceDetailPage from './components/ServiceDetailPage';
+import CaseStudies from './components/CaseStudies';
+import RoiCalculator from './components/RoiCalculator';
 import ClientEngagementModel from './components/ClientEngagementModel';
 import WhoWeServe from './components/WhoWeServe';
 import EngagementModels from './components/EngagementModels';
@@ -20,8 +24,21 @@ function App() {
       if (hash === '#contact' || hash === '#/contact' || hash === '#contact-page' || path === '/contact') {
         return 'contact';
       }
+      if (hash.startsWith('#service/')) {
+        return 'service-detail';
+      }
     }
     return 'home';
+  });
+
+  const [selectedServiceId, setSelectedServiceId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.startsWith('#service/')) {
+        return hash.replace('#service/', '');
+      }
+    }
+    return 'gov-relations';
   });
 
   useEffect(() => {
@@ -30,7 +47,12 @@ function App() {
       if (hash === '#contact' || hash === '#/contact' || hash === '#contact-page') {
         setCurrentPage('contact');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash.startsWith('#') && hash !== '#contact') {
+      } else if (hash.startsWith('#service/')) {
+        const sId = hash.replace('#service/', '');
+        setSelectedServiceId(sId || 'gov-relations');
+        setCurrentPage('service-detail');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
         setCurrentPage('home');
       }
     };
@@ -44,7 +66,7 @@ function App() {
       setCurrentPage('contact');
       window.location.hash = '#contact';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
+    } else if (page === 'home') {
       setCurrentPage('home');
       if (sectionId) {
         window.location.hash = sectionId;
@@ -53,12 +75,19 @@ function App() {
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 50);
+        }, 80);
       } else {
         window.location.hash = '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
+  };
+
+  const navigateToService = (serviceId) => {
+    setSelectedServiceId(serviceId);
+    setCurrentPage('service-detail');
+    window.location.hash = `#service/${serviceId}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -78,33 +107,54 @@ function App() {
             onNavigateHome={() => navigateTo('home')}
           />
         </main>
+      ) : currentPage === 'service-detail' ? (
+        <main>
+          <ServiceDetailPage 
+            serviceId={selectedServiceId}
+            onNavigateHome={() => navigateTo('home', '#services')}
+            onNavigateContact={() => navigateTo('contact')}
+            onSelectService={(sId) => navigateToService(sId)}
+          />
+        </main>
       ) : (
         <main>
           {/* 1. Hero */}
           <Hero onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 2. Who We Are */}
+          {/* 2. Regional Press & Broadcast Wire Feed */}
+          <Ticker />
+
+          {/* 3. Who We Are */}
           <WhoWeAre onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 3. Why Global Aadhar */}
+          {/* 4. Why Global Aadhar */}
           <WhyGlobalAadhar onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 4. Our Six Core Services */}
-          <Services onNavigateContact={() => navigateTo('contact')} />
+          {/* 5. Our Six Core Services */}
+          <Services 
+            onNavigateContact={() => navigateTo('contact')} 
+            onNavigateService={(sId) => navigateToService(sId)}
+          />
 
-          {/* 5. Integrated Client Engagement Model */}
+          {/* 6. Proven Track Record & Regional Case Studies */}
+          <CaseStudies onNavigateContact={() => navigateTo('contact')} />
+
+          {/* 7. Interactive Campaign Scope & PR ROI Estimator */}
+          <RoiCalculator onNavigateContact={() => navigateTo('contact')} />
+
+          {/* 8. Integrated Client Engagement Model */}
           <ClientEngagementModel onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 6. Who We Serve */}
+          {/* 9. Who We Serve */}
           <WhoWeServe onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 7. Engagement Models */}
+          {/* 10. Engagement Models & Retainers */}
           <EngagementModels onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 8. Why Partner With Global Aadhar */}
+          {/* 11. Why Partner With Global Aadhar */}
           <WhyPartner onNavigateContact={() => navigateTo('contact')} />
 
-          {/* 9. Contact / Closing Slide */}
+          {/* 12. Contact / Closing Slide */}
           <Contact onNavigateContact={() => navigateTo('contact')} />
         </main>
       )}
@@ -121,4 +171,3 @@ function App() {
 }
 
 export default App;
-

@@ -4,12 +4,18 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 export default function Navbar({ currentPage = 'home', onNavigateContact, onNavigateHome, onNavigateSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const currentProgress = (window.scrollY / totalScroll) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, currentProgress)));
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -17,6 +23,8 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
     { label: 'Who We Are', href: '#about' },
     { label: 'Why Us', href: '#why-us' },
     { label: 'Core Services', href: '#services' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'ROI Estimator', href: '#roi-estimator' },
     { label: 'Engagement Model', href: '#engagement-model' },
     { label: 'Who We Serve', href: '#who-we-serve' },
     { label: 'Commercial Models', href: '#models' },
@@ -45,8 +53,18 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
     <header className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
         ? 'bg-[#E5E3DE] shadow-md border-b border-[#D5D1C8] py-3.5' 
-        : 'bg-[#E5E3DE] border-b border-[#D5D1C8]/80 py-5 sm:py-6'
+        : 'bg-[#E5E3DE] border-b border-[#D5D1C8]/80 py-4 sm:py-5'
     }`}>
+      {/* Top / Bottom Reading & Deck Progress Bar */}
+      <div 
+        className="absolute bottom-0 left-0 h-[2.5px] bg-[#2D5A54] transition-all duration-150 ease-out z-50 pointer-events-none"
+        style={{ width: `${scrollProgress}%` }}
+        role="progressbar"
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-valuemin="0"
+        aria-valuemax="100"
+      />
+
       <div className="deck-container flex items-center justify-between">
         {/* Brand Wordmark & Label */}
         <a 
@@ -63,8 +81,32 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 font-deck-body text-xs font-bold text-[#2B2B2B] uppercase tracking-wider">
+        <nav className="hidden 2xl:flex items-center gap-5 font-deck-body text-xs font-bold text-[#2B2B2B] uppercase tracking-wider">
           {navLinks.map((link) => {
+            const isContactLink = link.href === '#contact';
+            const isActive = isContactLink ? currentPage === 'contact' : false;
+
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`transition-colors py-1 relative group cursor-pointer ${
+                  isActive ? 'text-[#2D5A54] font-extrabold' : 'text-[#2B2B2B] hover:text-[#2D5A54]'
+                }`}
+              >
+                {link.label}
+                <span className={`absolute bottom-0 left-0 h-[2px] bg-[#2D5A54] transition-all duration-200 ${
+                  isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}></span>
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Compact Desktop Navigation Links for intermediate widths (xl) */}
+        <nav className="hidden xl:flex 2xl:hidden items-center gap-4 font-deck-body text-xs font-bold text-[#2B2B2B] uppercase tracking-wider">
+          {navLinks.filter(l => ['Who We Are', 'Core Services', 'Case Studies', 'ROI Estimator', 'Commercial Models', 'Contact'].includes(l.label)).map((link) => {
             const isContactLink = link.href === '#contact';
             const isActive = isContactLink ? currentPage === 'contact' : false;
 

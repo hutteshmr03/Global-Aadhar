@@ -1,227 +1,235 @@
 import React, { useState, useMemo } from 'react';
-import { Calculator, DollarSign, Eye, Globe2, Sparkles, ArrowRight, ShieldCheck, TrendingUp } from 'lucide-react';
+import { Calculator, Eye, Sparkles, ArrowRight, ShieldCheck, TrendingUp, Award, Layers } from 'lucide-react';
+import { regionalSectors } from '../data/mockData';
 
-const industryMultipliers = {
-  'tech-ai': { name: 'AI & DeepTech', baseImp: 8.5, aveMulti: 24000 },
-  'fintech': { name: 'Fintech & Web3', baseImp: 7.8, aveMulti: 28000 },
-  'saas': { name: 'Enterprise SaaS', baseImp: 6.2, aveMulti: 21000 },
-  'cleantech': { name: 'CleanTech & ESG', baseImp: 5.5, aveMulti: 19000 },
-  'luxury': { name: 'Consumer Luxury', baseImp: 11.0, aveMulti: 32000 },
-  'health': { name: 'Healthcare & Biotech', baseImp: 6.8, aveMulti: 26000 }
-};
-
-export default function RoiCalculator({ onOpenBooking }) {
-  const [industry, setIndustry] = useState('tech-ai');
-  const [tier1Count, setTier1Count] = useState(5);
+export default function RoiCalculator({ onNavigateContact }) {
+  const [sectorKey, setSectorKey] = useState('pharma-corp');
+  const [outletCount, setOutletCount] = useState(6);
   const [durationMonths, setDurationMonths] = useState(3);
-  const [includeBroadcasting, setIncludeBroadcasting] = useState(true);
+  const [includeCloudTech, setIncludeCloudTech] = useState(true);
 
   const calculated = useMemo(() => {
-    const config = industryMultipliers[industry] || industryMultipliers['tech-ai'];
-    const broadcastBonus = includeBroadcasting ? 1.4 : 1.0;
-    
+    const config = regionalSectors[sectorKey] || regionalSectors['pharma-corp'];
+    const techMultiplier = includeCloudTech ? 1.35 : 1.0;
+
     const totalImpressions = Math.round(
-      tier1Count * config.baseImp * durationMonths * 1.8 * broadcastBonus * 10
+      outletCount * config.baseImp * durationMonths * 0.45 * techMultiplier * 10
     ) / 10;
 
     const estimatedAVE = Math.round(
-      tier1Count * config.aveMulti * durationMonths * (includeBroadcasting ? 1.5 : 1.0)
+      outletCount * config.aveMulti * durationMonths * techMultiplier
     );
 
-    const highDABacklinks = Math.round(tier1Count * 3.4 * (durationMonths * 0.8));
-    const inboundTrafficSurge = Math.min(750, Math.round(180 + tier1Count * 35 * durationMonths * 0.4));
+    const highDAPlacements = Math.round(outletCount * 2.2 * (durationMonths * 0.75));
+    const stakeholderLift = Math.min(480, Math.round(120 + outletCount * 18 * durationMonths * 0.35));
 
     return {
-      impressions: `${totalImpressions} Million`,
-      aveValue: `$${estimatedAVE.toLocaleString()}`,
-      backlinks: `${highDABacklinks} High-DA Links`,
-      surge: `+${inboundTrafficSurge}% Inbound Lift`
+      impressions: `${totalImpressions}M+`,
+      aveValue: `₹${(estimatedAVE / 100000).toFixed(1)} Lakhs`,
+      placements: `${highDAPlacements}+ Placements`,
+      surge: `+${stakeholderLift}% Lift`
     };
-  }, [industry, tier1Count, durationMonths, includeBroadcasting]);
+  }, [sectorKey, outletCount, durationMonths, includeCloudTech]);
 
   return (
-    <section id="roi-calculator" className="section-wrapper bg-slate-950">
-      <div className="main-container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="badge-pill">
-            <Calculator className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Real-Time Estimation Engine</span>
+    <section id="roi-estimator" className="py-14 sm:py-18 lg:py-22 bg-[#E5E3DE] border-b border-[#D5D1C8]">
+      <div className="deck-container">
+        {/* Slide Header Bar */}
+        <div className="slide-header-bar">
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
+            <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
+            <span>CAMPAIGN SCOPE & PR IMPACT ESTIMATOR</span>
           </div>
-          <h2 className="section-title">
-            PR Media Reach & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400">
-              Media ROI Estimator
-            </span>
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest">
+            INTERACTIVE ESTIMATION ENGINE
+          </div>
+        </div>
+
+        {/* Section Heading */}
+        <div className="mb-8 sm:mb-10 space-y-2">
+          <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
+            Estimate Your Strategic PR & Media Impact
           </h2>
-          <p className="section-desc">
-            Calculate your projected audience impressions, advertising value equivalency (AVE), and SEO authority impact.
+          <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-2xl leading-relaxed">
+            Configure your industry sector, media distribution breadth, and engagement horizon to calculate projected editorial reach, advertising value equivalency (AVE), and stakeholder engagement.
           </p>
         </div>
 
         {/* Calculator Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          {/* Controls */}
-          <div className="lg:col-span-6 glass-panel p-5 sm:p-7 space-y-4">
-            <h3 className="text-xs font-bold text-white flex items-center gap-2 uppercase tracking-wider pb-2 border-b border-slate-800">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
-              Configure Target Campaign Scope
-            </h3>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          {/* Controls Panel */}
+          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md space-y-5 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-[#D5D1C8] text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+                <Sparkles className="w-4 h-4 text-[#2D5A54]" />
+                <span>1. Select Primary Sector</span>
+              </div>
 
-            {/* Industry Selection */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                Select Your Primary Sector
-              </label>
+              {/* Sector Selection */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {Object.entries(industryMultipliers).map(([key, data]) => (
+                {Object.entries(regionalSectors).map(([key, data]) => (
                   <button
                     key={key}
                     type="button"
-                    onClick={() => setIndustry(key)}
-                    className={`p-2 rounded-xl text-xs font-semibold text-center transition border ${
-                      industry === key
-                        ? 'bg-indigo-600 text-white border-indigo-400 shadow-md'
-                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700 hover:text-slate-200'
+                    onClick={() => setSectorKey(key)}
+                    className={`p-2.5 rounded-xl text-xs font-deck-body font-semibold text-center transition-all cursor-pointer ${
+                      sectorKey === key
+                        ? 'bg-[#2D5A54] text-white shadow-xs border border-[#2D5A54]'
+                        : 'bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54]'
                     }`}
                   >
                     {data.name}
                   </button>
                 ))}
               </div>
-            </div>
 
-            {/* Sliders */}
-            <div className="space-y-3.5">
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    Target Tier-1 Media Outlets
-                  </span>
-                  <span className="text-xs font-extrabold text-indigo-400 bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-500/30">
-                    {tier1Count} Outlets
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="2"
-                  max="20"
-                  value={tier1Count}
-                  onChange={(e) => setTier1Count(Number(e.target.value))}
-                  className="w-full accent-indigo-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                  <span>2 Focused Outlets</span>
-                  <span>20 Global Syndication</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    Campaign Duration / Retainer Horizon
-                  </span>
-                  <span className="text-xs font-extrabold text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
-                    {durationMonths} {durationMonths === 1 ? 'Month' : 'Months'}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="12"
-                  value={durationMonths}
-                  onChange={(e) => setDurationMonths(Number(e.target.value))}
-                  className="w-full accent-cyan-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                  <span>1 Month (Sprint)</span>
-                  <span>12 Months (Dominance)</span>
-                </div>
-              </div>
-
-              {/* Toggle Broadcast Booking */}
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-                <div className="flex items-center gap-2">
-                  <Globe2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-200">Include TV & Broadcast Circuits</div>
-                    <div className="text-[10px] text-slate-400">Bloomberg TV, CNBC, BBC World, Top-Tier Tech Podcasts</div>
+              {/* Sliders */}
+              <div className="space-y-4 pt-2">
+                {/* Outlets Slider */}
+                <div>
+                  <div className="flex justify-between items-center mb-1.5 font-deck-body">
+                    <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+                      Target Media & Press Outlets
+                    </span>
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-2.5 py-0.5 rounded-md border border-[#D5D1C8]">
+                      {outletCount} Outlets
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="2"
+                    max="15"
+                    value={outletCount}
+                    onChange={(e) => setOutletCount(Number(e.target.value))}
+                    className="w-full accent-[#2D5A54] bg-[#D5D1C8] h-2 rounded-lg cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-deck-body text-[#555555] mt-1">
+                    <span>2 Regional Dailies</span>
+                    <span>15 State & National Media Wire</span>
                   </div>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={includeBroadcasting}
-                  onChange={(e) => setIncludeBroadcasting(e.target.checked)}
-                  className="w-4 h-4 accent-indigo-500 rounded cursor-pointer"
-                />
+
+                {/* Duration Slider */}
+                <div>
+                  <div className="flex justify-between items-center mb-1.5 font-deck-body">
+                    <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+                      Engagement Horizon
+                    </span>
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-2.5 py-0.5 rounded-md border border-[#D5D1C8]">
+                      {durationMonths} {durationMonths === 1 ? 'Month' : 'Months'}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="12"
+                    value={durationMonths}
+                    onChange={(e) => setDurationMonths(Number(e.target.value))}
+                    className="w-full accent-[#2D5A54] bg-[#D5D1C8] h-2 rounded-lg cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-deck-body text-[#555555] mt-1">
+                    <span>1 Month (Project Sprint)</span>
+                    <span>12 Months (Annual Retainer)</span>
+                  </div>
+                </div>
+
+                {/* Tech Integration Toggle */}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8]">
+                  <div className="flex items-center gap-2.5">
+                    <Layers className="w-4 h-4 text-[#2D5A54] shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-[#2B2B2B]">Include Sumant Cloud Tech & Digital PR</div>
+                      <div className="text-[10px] text-[#555555]">Integrated enterprise software, SEO resonance, and digital kits</div>
+                    </div>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={includeCloudTech}
+                    onChange={(e) => setIncludeCloudTech(e.target.checked)}
+                    className="w-4 h-4 accent-[#2D5A54] rounded cursor-pointer"
+                  />
+                </div>
               </div>
+            </div>
+
+            <div className="text-[11px] font-deck-body text-[#555555] pt-2 border-t border-[#D5D1C8]/80 flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A54]" />
+              <span>Calculations modeled on audited Western India media circulation & broadcast viewership.</span>
             </div>
           </div>
 
-          {/* Result Output Card */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="glass-panel p-5 sm:p-7 border border-cyan-500/30 relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-950 shadow-xl">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-widest">
-                  Projected Media Impact
+          {/* Results Output Panel */}
+          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl bg-[#23413C] text-white border border-[#2D5A54] shadow-xl flex flex-col justify-between relative overflow-hidden">
+            {/* Ambient Lighting */}
+            <div className="absolute -top-24 -right-24 w-60 h-60 rounded-full bg-[#2D5A54]/30 blur-2xl pointer-events-none"></div>
+
+            <div className="relative z-10 space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b border-white/15">
+                <span className="text-xs font-bold text-[#EDEBE7] font-deck-body uppercase tracking-widest flex items-center gap-2">
+                  <Award className="w-4 h-4 text-emerald-300" />
+                  Projected Strategic PR Metrics
                 </span>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3" /> AP / Nielsen Standard
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 border border-white/20">
+                  ESTIMATED VALUE
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 my-4">
-                <div className="p-3 rounded-2xl bg-slate-900/80 border border-slate-800">
-                  <div className="text-[10px] font-bold text-slate-400 flex items-center gap-1 mb-0.5">
-                    <Eye className="w-3 h-3 text-indigo-400" /> Total Impressions
+              {/* 4 Metric Cards */}
+              <div className="grid grid-cols-2 gap-3.5">
+                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                    <Eye className="w-3.5 h-3.5 text-emerald-300" /> Total Impressions
                   </div>
-                  <div className="text-lg sm:text-xl font-black text-white">
+                  <div className="text-2xl sm:text-3xl font-deck-headline text-white">
                     {calculated.impressions}
                   </div>
-                  <div className="text-[9px] text-slate-400">Verified Viewership</div>
+                  <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Verified Readership & Viewers</div>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-900/80 border border-slate-800">
-                  <div className="text-[10px] font-bold text-slate-400 flex items-center gap-1 mb-0.5">
-                    <DollarSign className="w-3 h-3 text-emerald-400" /> Estimated AVE Value
+                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                    <Award className="w-3.5 h-3.5 text-emerald-300" /> Advertising Value (AVE)
                   </div>
-                  <div className="text-lg sm:text-xl font-black text-emerald-400">
+                  <div className="text-2xl sm:text-3xl font-deck-headline text-emerald-300">
                     {calculated.aveValue}
                   </div>
-                  <div className="text-[9px] text-slate-400">Equivalent Paid Media</div>
+                  <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Equivalent Paid Media Worth</div>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-900/80 border border-slate-800">
-                  <div className="text-[10px] font-bold text-slate-400 flex items-center gap-1 mb-0.5">
-                    <Globe2 className="w-3 h-3 text-cyan-400" /> High-DA Backlinks
+                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                    <Layers className="w-3.5 h-3.5 text-emerald-300" /> Media Placements
                   </div>
-                  <div className="text-base sm:text-lg font-black text-cyan-300">
-                    {calculated.backlinks}
+                  <div className="text-xl sm:text-2xl font-deck-headline text-white">
+                    {calculated.placements}
                   </div>
-                  <div className="text-[9px] text-slate-400">DR 75-92 Media Citations</div>
+                  <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Print, Digital & TV Features</div>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-900/80 border border-slate-800">
-                  <div className="text-[10px] font-bold text-slate-400 flex items-center gap-1 mb-0.5">
-                    <TrendingUp className="w-3 h-3 text-purple-400" /> Commercial Surge
+                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-300" /> Stakeholder Lift
                   </div>
-                  <div className="text-base sm:text-lg font-black text-purple-300">
+                  <div className="text-xl sm:text-2xl font-deck-headline text-emerald-300">
                     {calculated.surge}
                   </div>
-                  <div className="text-[9px] text-slate-400">Inbound Brand Search</div>
+                  <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Inbound Trust & Engagement</div>
                 </div>
               </div>
+            </div>
 
-              {/* Action Button */}
-              <div className="pt-1">
-                <button
-                  onClick={onOpenBooking}
-                  className="w-full btn-primary text-xs py-2.5 rounded-xl shadow-md flex items-center justify-center gap-2"
-                >
-                  <span>Lock In This PR Distribution Strategy</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+            {/* CTA in Panel */}
+            <div className="relative z-10 pt-6">
+              <button
+                onClick={() => {
+                  if (onNavigateContact) onNavigateContact();
+                  else window.location.hash = '#contact';
+                }}
+                className="w-full py-3 px-5 rounded-xl bg-white text-[#23413C] hover:bg-[#EDEBE7] font-deck-body text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              >
+                <span>Discuss This Campaign Scope With Our Panjim Bureau</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
