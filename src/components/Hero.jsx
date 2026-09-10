@@ -129,7 +129,7 @@ export default function Hero({ onNavigateContact }) {
                         {stat.label}
                       </span>
                       <div className="w-6 h-6 rounded-lg bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center shrink-0 group-hover/stat:bg-[#2D5A54] group-hover/stat:text-white transition-colors duration-200">
-                        <StatIcon className="w-3.5 h-3.5" />
+                        <StatIcon className="w-3.5 h-3.5 text-inherit" />
                       </div>
                     </div>
                     <div className="font-deck-headline text-base sm:text-lg text-[#2D5A54]">

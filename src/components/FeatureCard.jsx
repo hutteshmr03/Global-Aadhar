@@ -21,16 +21,16 @@ export default function FeatureCard({
 }) {
   const renderIcon = () => {
     if (!IconOrString) {
-      return <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>;
+      return <span className="w-2 h-2 rounded-full bg-current"></span>;
     }
     if (React.isValidElement(IconOrString)) {
       return IconOrString;
     }
     if (typeof IconOrString === 'string' || typeof IconOrString === 'number') {
-      return <span>{IconOrString}</span>;
+      return <span className="text-inherit">{IconOrString}</span>;
     }
     const IconComponent = IconOrString;
-    return <IconComponent className="w-4 h-4 text-[#2D5A54]" />;
+    return <IconComponent className="w-4 h-4 text-inherit" />;
   };
 
   const handleButtonClick = (e) => {
@@ -68,7 +68,7 @@ export default function FeatureCard({
         {/* Top Header Row: Square Tinted Icon Badge (Left) + Tinted Pill Label (Right) */}
         <div className="flex flex-wrap items-center justify-between gap-2.5 w-full mb-4 sm:mb-5">
           {/* Icon Badge */}
-          <div className="w-10 h-10 rounded-xl bg-[#2D5A54]/10 border border-[#2D5A54]/15 text-[#2D5A54] flex items-center justify-center shrink-0 font-bold font-deck-headline text-sm shadow-2xs group-hover:bg-[#2D5A54] group-hover:text-white transition-colors duration-300">
+          <div className="w-10 h-10 rounded-xl bg-[#2D5A54]/10 border border-[#2D5A54]/15 text-[#2D5A54] flex items-center justify-center shrink-0 font-bold font-deck-headline text-sm shadow-2xs group-hover:bg-[#2D5A54] group-hover:text-white group-hover:border-[#2D5A54] transition-all duration-300">
             {renderIcon()}
           </div>
 
