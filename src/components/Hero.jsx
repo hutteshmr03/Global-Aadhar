@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MapPin, User, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, MapPin, User, ArrowUpRight, ShieldCheck, Award, Radio, Clock, Sparkles } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
 const heroHeadlines = [
@@ -8,6 +8,13 @@ const heroHeadlines = [
   { primary: 'AMPLIFYING REACH.', secondary: 'CONNECTING OPPORTUNITIES.' },
   { primary: 'SHAPING NARRATIVES.', secondary: 'DELIVERING VALUE.' },
   { primary: 'INSPIRING CONFIDENCE.', secondary: 'DRIVING CHANGE.' }
+];
+
+const credentialsStats = [
+  { label: 'Strategic Leadership', value: '15+ Years', icon: Award },
+  { label: 'Media & Press Outlets', value: '450+ Wires', icon: Radio },
+  { label: 'Sentiment Retention', value: '98.5%', icon: ShieldCheck },
+  { label: 'Crisis War Room Desk', value: '24/7 Panjim', icon: Clock }
 ];
 
 export default function Hero({ onNavigateContact }) {
@@ -23,7 +30,7 @@ export default function Hero({ onNavigateContact }) {
   const currentHeadline = heroHeadlines[headlineIndex];
 
   return (
-    <section className="relative pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-[#E5E3DE]">
+    <section className="relative pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20 overflow-hidden bg-[#E5E3DE]">
       <div className="deck-container">
         {/* Slide Header Bar */}
         <div className="slide-header-bar">
@@ -31,13 +38,13 @@ export default function Hero({ onNavigateContact }) {
             <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest">
-            SLIDE 01 • EXECUTIVE SUMMARY
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest uppercase">
+            SLIDE 01 • EXECUTIVE STRATEGIC BRIEF
           </div>
         </div>
 
         {/* Main Deck Hero Card */}
-        <div className="relative min-w-0 p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div className="relative min-w-0 p-6 sm:p-8 lg:p-10 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
           {/* Subtle Ambient Decorative Glows */}
           <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#2D5A54]/5 blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#2D5A54]/5 blur-3xl pointer-events-none"></div>
@@ -46,7 +53,7 @@ export default function Hero({ onNavigateContact }) {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-w-0 space-y-5 sm:space-y-6"
+            className="min-w-0 space-y-6 sm:space-y-7"
           >
             {/* Top Brand Stack */}
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 border-b border-[#D5D1C8]/80 pb-4">
@@ -84,7 +91,7 @@ export default function Hero({ onNavigateContact }) {
             </div>
 
             {/* Action Buttons Row */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <a
                 href="#contact"
                 onClick={(e) => {
@@ -93,7 +100,7 @@ export default function Hero({ onNavigateContact }) {
                     onNavigateContact();
                   }
                 }}
-                className="btn-primary-teal text-xs px-6 py-2.5 shadow-md cursor-pointer"
+                className="btn-primary-teal text-xs px-6 py-3 shadow-md cursor-pointer"
               >
                 <span>Let's Talk</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -101,15 +108,40 @@ export default function Hero({ onNavigateContact }) {
 
               <a
                 href="#services"
-                className="btn-secondary-outline text-xs px-6 py-2.5"
+                className="btn-secondary-outline text-xs px-6 py-3"
               >
                 <span>Explore Core Services</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
+            {/* Executive Credentials & Stats Ribbon */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-2">
+              {credentialsStats.map((stat, idx) => {
+                const StatIcon = stat.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="p-3 sm:p-4 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] flex flex-col justify-between shadow-2xs hover:border-[#2D5A54] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group/stat"
+                  >
+                    <div className="flex items-center justify-between gap-1 mb-1.5">
+                      <span className="font-deck-body text-[10px] font-bold text-[#555555] group-hover/stat:text-[#2D5A54] uppercase tracking-wider transition-colors">
+                        {stat.label}
+                      </span>
+                      <div className="w-6 h-6 rounded-lg bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center shrink-0 group-hover/stat:bg-[#2D5A54] group-hover/stat:text-white transition-colors duration-200">
+                        <StatIcon className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
+                    <div className="font-deck-headline text-base sm:text-lg text-[#2D5A54]">
+                      {stat.value}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
             {/* Deck Slide Footer Metadata Line */}
-            <div className="pt-6 border-t border-[#D5D1C8]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-deck-body text-xs font-semibold text-[#555555]">
+            <div className="pt-5 border-t border-[#D5D1C8]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-deck-body text-xs font-semibold text-[#555555]">
               <div className="flex items-center gap-2">
                 <User className="w-3.5 h-3.5 text-[#2D5A54]" />
                 <span>Presented by: <strong className="text-[#2B2B2B]">{brandMeta.presentedBy}</strong></span>

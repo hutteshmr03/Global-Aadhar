@@ -202,7 +202,7 @@ export default function Contact({ onNavigateContact }) {
                       placeholder="e.g. Rahul Deshmukh"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full h-10 px-3.5 rounded-lg bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors"
+                      className="w-full h-11 px-3.5 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:ring-2 focus:ring-[#2D5A54]/20 focus:bg-white transition-all shadow-2xs"
                     />
                   </div>
 
@@ -216,7 +216,7 @@ export default function Contact({ onNavigateContact }) {
                       placeholder="name@organization.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full h-10 px-3.5 rounded-lg bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors"
+                      className="w-full h-11 px-3.5 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:ring-2 focus:ring-[#2D5A54]/20 focus:bg-white transition-all shadow-2xs"
                     />
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export default function Contact({ onNavigateContact }) {
                     placeholder="e.g. Goa Tourism Board / Zenith Healthcare"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full h-10 px-3.5 rounded-lg bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors"
+                    className="w-full h-11 px-3.5 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:ring-2 focus:ring-[#2D5A54]/20 focus:bg-white transition-all shadow-2xs"
                   />
                 </div>
 
@@ -247,14 +247,14 @@ export default function Contact({ onNavigateContact }) {
                     placeholder="Describe your PR goals, upcoming events, CSR storytelling, or technology requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3.5 rounded-lg bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:bg-white transition-colors resize-none leading-relaxed"
+                    className="w-full p-3.5 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8] text-[#2B2B2B] font-deck-body text-xs focus:outline-none focus:border-[#2D5A54] focus:ring-2 focus:ring-[#2D5A54]/20 focus:bg-white transition-all resize-none leading-relaxed shadow-2xs"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full btn-primary-teal text-xs py-3 justify-center shadow-md font-bold tracking-wider mt-1"
+                  className="w-full btn-primary-teal text-xs py-3 justify-center shadow-md font-bold tracking-wider mt-1 cursor-pointer"
                 >
                   {loading ? (
                     <span>Submitting Inquiry...</span>

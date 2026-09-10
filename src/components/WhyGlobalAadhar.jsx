@@ -44,33 +44,33 @@ export default function WhyGlobalAadhar() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-5 relative flex flex-col"
+            className="lg:col-span-5 relative flex flex-col group"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-sm border border-[#D5D1C8] flex-1 min-h-[340px] sm:min-h-[400px]">
+            <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-[#D5D1C8] flex-1 min-h-[340px] sm:min-h-[400px] transition-shadow duration-300">
               <img
                 src={whyGlobalAadharContent.image}
                 alt="Global Aadhar Team"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/75 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/80 via-transparent to-black/20"></div>
 
               {/* Badges Over Image with Clean Margins */}
-              <div className="absolute top-3 left-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute top-3.5 left-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
                 <Camera className="w-3.5 h-3.5 text-[#2D5A54]" />
                 <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Media Production</span>
               </div>
 
-              <div className="absolute top-3 right-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute top-3.5 right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
                 <Handshake className="w-3.5 h-3.5 text-[#2D5A54]" />
                 <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Institutional Trust</span>
               </div>
 
-              <div className="absolute bottom-3 left-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute bottom-3.5 left-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
                 <Settings className="w-3.5 h-3.5 text-[#2D5A54]" />
                 <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Sumant Cloud Tech</span>
               </div>
 
-              <div className="absolute bottom-3 right-3 p-2 sm:p-2.5 rounded-lg bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5">
+              <div className="absolute bottom-3.5 right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
                 <MessageSquare className="w-3.5 h-3.5 text-[#2D5A54]" />
                 <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Strategic PR</span>
               </div>

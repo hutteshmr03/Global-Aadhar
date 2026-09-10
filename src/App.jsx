@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowUp, Calendar, MessageSquare, PhoneCall } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Ticker from './components/Ticker';
@@ -40,6 +41,17 @@ function App() {
     }
     return 'gov-relations';
   });
+
+  const [showFloatingBar, setShowFloatingBar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFloatingBar(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -90,8 +102,12 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B] selection:bg-[#2D5A54] selection:text-white">
+    <div className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B] selection:bg-[#2D5A54] selection:text-white relative">
       {/* Sticky Header with Navigation Handlers */}
       <Navbar 
         currentPage={currentPage} 
@@ -166,6 +182,28 @@ function App() {
         onNavigateHome={() => navigateTo('home')}
         onNavigateSection={(secId) => navigateTo('home', secId)}
       />
+
+      {/* Floating Speed Dial & Back to Top Widget */}
+      {showFloatingBar && (
+        <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 animate-fade-in">
+          <button
+            onClick={() => navigateTo('contact')}
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#2D5A54] text-white hover:bg-[#23413C] font-deck-body font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer ring-2 ring-[#EDEBE7]"
+            aria-label="Book Consultation"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book 15-Min Briefing</span>
+          </button>
+
+          <button
+            onClick={scrollToTop}
+            className="w-10 h-10 rounded-full bg-[#EDEBE7] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white border border-[#D5D1C8] flex items-center justify-center shadow-lg hover:shadow-xl transition-all cursor-pointer ring-2 ring-white/80"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

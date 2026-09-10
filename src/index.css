@@ -179,15 +179,19 @@ body {
   letter-spacing: 0.03em;
   padding: 0.6875rem 1.375rem;
   border-radius: 9999px;
-  transition: all 0.25s ease;
-  box-shadow: 0 3px 10px rgba(45, 90, 84, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(45, 90, 84, 0.22);
   white-space: nowrap;
 }
 
 .btn-primary-teal:hover {
   background-color: #23413C;
   transform: translateY(-2px);
-  box-shadow: 0 5px 16px rgba(35, 65, 60, 0.35);
+  box-shadow: 0 6px 20px rgba(35, 65, 60, 0.32);
+}
+
+.btn-primary-teal:active {
+  transform: translateY(0);
 }
 
 .btn-secondary-outline {
@@ -204,9 +208,9 @@ body {
   letter-spacing: 0.03em;
   padding: 0.6875rem 1.375rem;
   border-radius: 9999px;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(45, 90, 84, 0.05);
+  box-shadow: 0 2px 6px rgba(45, 90, 84, 0.06);
 }
 
 .btn-secondary-outline:hover {
@@ -214,7 +218,67 @@ body {
   border-color: #2D5A54;
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 90, 84, 0.2);
+  box-shadow: 0 5px 16px rgba(45, 90, 84, 0.2);
+}
+
+.btn-secondary-outline:active {
+  transform: translateY(0);
+}
+
+/* Custom Range Input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #D5D1C8;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2D5A54;
+  cursor: pointer;
+  border: 2px solid #EDEBE7;
+  box-shadow: 0 2px 6px rgba(45, 90, 84, 0.35);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #23413C;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2D5A54;
+  cursor: pointer;
+  border: 2px solid #EDEBE7;
+  box-shadow: 0 2px 6px rgba(45, 90, 84, 0.35);
+}
+
+/* Ticker Animation */
+@keyframes ticker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 45s linear infinite;
+  will-change: transform;
 }
 
 /* Custom Scrollbar */
