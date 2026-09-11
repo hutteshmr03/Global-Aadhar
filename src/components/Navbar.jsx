@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-export default function Navbar({ currentPage = 'home', onNavigateContact, onNavigateHome, onNavigateSection }) {
+export default function Navbar({ 
+  currentPage = 'home', 
+  onNavigatePage,
+  onNavigateContact, 
+  onNavigateHome, 
+  onNavigateSection 
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -20,23 +26,23 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
   }, []);
 
   const navLinks = [
-    { label: 'Who We Are', href: '#about' },
-    { label: 'Why Us', href: '#why-us' },
-    { label: 'Core Services', href: '#services' },
-    { label: 'Engagement Model', href: '#engagement-model' },
-    { label: 'Who We Serve', href: '#who-we-serve' },
-    { label: 'Commercial Models', href: '#models' },
-    { label: 'Contact', href: '#contact' }
+    { id: 'engagement-model', label: 'Engagement Model', href: '#/engagement-model' },
+    { id: 'commercial-models', label: 'Commercial Models', href: '#/commercial-models' },
+    { id: 'services', label: 'Core Services', href: '#/services' },
+    { id: 'who-we-are', label: 'Who We Are', href: '#/who-we-are' },
+    { id: 'who-we-serve', label: 'Who We Serve', href: '#/who-we-serve' },
+    { id: 'why-us', label: 'Why Us', href: '#/why-us' },
+    { id: 'contact', label: 'Contact', href: '#/contact' }
   ];
 
-  const handleLinkClick = (e, href) => {
+  const handleLinkClick = (e, link) => {
     e.preventDefault();
-    if (href === '#contact') {
-      if (onNavigateContact) onNavigateContact();
-      else window.location.hash = '#contact';
+    if (onNavigatePage) {
+      onNavigatePage(link.id);
+    } else if (link.id === 'contact' && onNavigateContact) {
+      onNavigateContact();
     } else {
-      if (onNavigateSection) onNavigateSection(href);
-      else window.location.hash = href;
+      window.location.hash = link.href;
     }
     setMobileMenuOpen(false);
   };
@@ -44,6 +50,7 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
   const handleBrandClick = (e) => {
     e.preventDefault();
     if (onNavigateHome) onNavigateHome();
+    else if (onNavigatePage) onNavigatePage('home');
     else window.location.hash = '';
   };
 
@@ -85,14 +92,13 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
           {/* Clean Inline Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center justify-center gap-4 xl:gap-6 2xl:gap-7 font-deck-body text-xs xl:text-[13px] font-semibold text-[#2B2B2B] whitespace-nowrap">
             {navLinks.map((link) => {
-              const isContactLink = link.href === '#contact';
-              const isActive = isContactLink ? currentPage === 'contact' : false;
+              const isActive = currentPage === link.id;
 
               return (
                 <a
-                  key={link.label}
+                  key={link.id}
                   href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  onClick={(e) => handleLinkClick(e, link)}
                   className={`transition-colors py-1 relative cursor-pointer whitespace-nowrap shrink-0 ${
                     isActive 
                       ? 'text-[#2D5A54] font-bold' 
@@ -112,7 +118,11 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               type="button"
-              onClick={() => onNavigateContact ? onNavigateContact() : (window.location.hash = '#contact')}
+              onClick={() => {
+                if (onNavigatePage) onNavigatePage('contact');
+                else if (onNavigateContact) onNavigateContact();
+                else window.location.hash = '#/contact';
+              }}
               className={`hidden sm:inline-flex btn-primary-teal px-5 rounded-full cursor-pointer shadow-sm hover:shadow-md transition-all whitespace-nowrap font-bold ${
                 scrolled ? 'text-xs py-1.5' : 'text-xs py-2'
               }`}
@@ -138,24 +148,32 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
       {mobileMenuOpen && (
         <div className="lg:hidden mt-2 rounded-2xl border border-[#D5D1C8] bg-[#EDEBE7]/98 backdrop-blur-xl p-4 sm:p-5 space-y-3 shadow-2xl animate-fade-in">
           <nav className="flex flex-col space-y-1 font-deck-body text-xs sm:text-sm font-semibold text-[#2B2B2B]">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="px-4 py-2.5 rounded-xl hover:bg-[#2D5A54] hover:text-white transition-all cursor-pointer font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = currentPage === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link)}
+                  className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer font-medium ${
+                    isActive 
+                      ? 'bg-[#2D5A54] text-white font-bold' 
+                      : 'hover:bg-[#2D5A54]/10 text-[#2B2B2B]'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
           <div className="pt-2 sm:hidden border-t border-[#D5D1C8]/60">
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
-                if (onNavigateContact) onNavigateContact();
-                else window.location.hash = '#contact';
+                if (onNavigatePage) onNavigatePage('contact');
+                else if (onNavigateContact) onNavigateContact();
+                else window.location.hash = '#/contact';
               }}
               className="btn-primary-teal w-full justify-center text-xs py-3 rounded-full cursor-pointer shadow-md font-bold"
             >

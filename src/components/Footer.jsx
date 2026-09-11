@@ -1,31 +1,42 @@
-import React from 'react';
+﻿import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
-export default function Footer({ currentPage = 'home', onNavigateContact, onNavigateHome, onNavigateSection }) {
+export default function Footer({ currentPage = 'home', onNavigatePage, onNavigateContact, onNavigateHome }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleLinkClick = (e, href) => {
+  const handleLinkClick = (e, pageId) => {
     e.preventDefault();
-    if (href === '#contact') {
-      if (onNavigateContact) onNavigateContact();
-      else window.location.hash = '#contact';
+    if (onNavigatePage) {
+      onNavigatePage(pageId);
+    } else if (pageId === 'contact' && onNavigateContact) {
+      onNavigateContact();
     } else {
-      if (onNavigateSection) onNavigateSection(href);
-      else window.location.hash = href;
+      window.location.hash = `#/${pageId}`;
     }
   };
 
   const handleBrandClick = (e) => {
     e.preventDefault();
     if (onNavigateHome) onNavigateHome();
+    else if (onNavigatePage) onNavigatePage('home');
     else window.location.hash = '';
   };
 
+  const footerLinks = [
+    { id: 'engagement-model', label: 'Engagement Model' },
+    { id: 'commercial-models', label: 'Commercial Models' },
+    { id: 'services', label: 'Core Services' },
+    { id: 'who-we-are', label: 'Who We Are' },
+    { id: 'who-we-serve', label: 'Who We Serve' },
+    { id: 'why-us', label: 'Why Us' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
   return (
-    <footer className="bg-[#EDEBE7] text-[#2B2B2B] pt-10 pb-8 border-t border-[#D5D1C8] font-deck-body">
+    <footer className="bg-[#EDEBE7] text-[#2B2B2B] pt-12 pb-8 border-t border-[#D5D1C8] font-deck-body">
       <div className="deck-container space-y-8">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[#D5D1C8]">
@@ -50,14 +61,25 @@ export default function Footer({ currentPage = 'home', onNavigateContact, onNavi
             <div className="font-deck-headline text-xs tracking-wider text-[#2D5A54] uppercase mb-1.5">
               Navigation
             </div>
-            <ul className="space-y-1.5 text-[#2B2B2B]">
-              <li><a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Who We Are</a></li>
-              <li><a href="#why-us" onClick={(e) => handleLinkClick(e, '#why-us')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Why Global Aadhar</a></li>
-              <li><a href="#services" onClick={(e) => handleLinkClick(e, '#services')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Our Six Core Services</a></li>
-              <li><a href="#engagement-model" onClick={(e) => handleLinkClick(e, '#engagement-model')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Client Engagement Model</a></li>
-              <li><a href="#who-we-serve" onClick={(e) => handleLinkClick(e, '#who-we-serve')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Who We Serve</a></li>
-              <li><a href="#models" onClick={(e) => handleLinkClick(e, '#models')} className="hover:text-[#2D5A54] transition-colors cursor-pointer">Commercial Models</a></li>
-              <li><a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="hover:text-[#2D5A54] font-bold transition-colors cursor-pointer">Contact & Desk</a></li>
+            <ul className="space-y-2 text-[#2B2B2B]">
+              {footerLinks.map((link) => {
+                const isActive = currentPage === link.id;
+                return (
+                  <li key={link.id}>
+                    <a 
+                      href={`#/${link.id}`} 
+                      onClick={(e) => handleLinkClick(e, link.id)} 
+                      className={`transition-colors cursor-pointer ${
+                        isActive 
+                          ? 'text-[#2D5A54] font-bold underline decoration-2 underline-offset-4' 
+                          : 'hover:text-[#2D5A54]'
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
