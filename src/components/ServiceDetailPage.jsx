@@ -25,6 +25,7 @@ export default function ServiceDetailPage({
   const services = coreServicesContent.services;
   const currentService = services.find(s => s.id === serviceId) || services[0];
   const Icon = serviceIcons[currentService.id] || Layers;
+  const [selectedPrVideo, setSelectedPrVideo] = useState('LXb3EKWsInQ');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -195,6 +196,96 @@ export default function ServiceDetailPage({
                     />
                   ))}
                 </div>
+              </motion.div>
+            )}
+
+            {/* Specific for Media Production: Capgemini-Style Split Band Video Showcases (One by One) */}
+            {currentService.id === 'media-production' && (
+              <motion.div variants={itemVariants} className="mt-8 pt-8 border-t border-[#D5D1C8] space-y-6 sm:space-y-8">
+                {[
+                  {
+                    number: "01",
+                    eyebrow: "STRATEGIC COMMUNICATIONS IN ACTION",
+                    headline: "We deliver real value",
+                    subtitle: "Through our narrative-first approach, broadcast media network, and high-production storytelling across Goa and Western India.",
+                    videoId: "LXb3EKWsInQ",
+                    tag: "4K Ultra HD Commercial",
+                    spec: "Cinema Rigging • Script-to-Screen Direction"
+                  },
+                  {
+                    number: "02",
+                    eyebrow: "REGIONAL PRESS & BROADCAST WIRES",
+                    headline: "Amplifying Reach Across Media",
+                    subtitle: "Broadcast-ready press conferences, executive interviews, and regional TV news coverage ensuring your announcements lead headlines.",
+                    videoId: "M7lc1UVf-VE",
+                    tag: "Broadcast Media Wire",
+                    spec: "Press Management • Live News Feed"
+                  },
+                  {
+                    number: "03",
+                    eyebrow: "AUTHENTIC STAKEHOLDER STORYTELLING",
+                    headline: "Inspiring Confidence & Trust",
+                    subtitle: "On-ground documentary filmmaking and beneficiary video stories connecting corporate social responsibility mandates with community trust.",
+                    videoId: "ScMzIvxBSi4",
+                    tag: "CSR Impact Documentary",
+                    spec: "Field Production • Multilingual Dubbing"
+                  }
+                ].map((item, idx) => (
+                  <div
+                    key={item.number}
+                    className="relative rounded-3xl overflow-hidden bg-[#1A332F] text-white border border-[#2D5A54] shadow-2xl p-6 sm:p-10 lg:p-12"
+                  >
+                    {/* Ambient Glow */}
+                    <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-[#2D5A54]/30 blur-3xl pointer-events-none"></div>
+                    <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                      {/* Left Column: Messaging */}
+                      <div className="lg:col-span-5 space-y-4">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-emerald-300"></span>
+                          <span className="font-deck-body text-[11px] font-bold text-emerald-300 uppercase tracking-[0.2em]">
+                            {item.eyebrow} • {item.number}
+                          </span>
+                        </div>
+
+                        <h3 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                          {item.headline}
+                        </h3>
+
+                        <p className="font-deck-body text-xs sm:text-sm text-[#D5D1C8] leading-relaxed">
+                          {item.subtitle}
+                        </p>
+
+                        <div className="pt-2 flex flex-wrap items-center gap-2 font-deck-body text-[11px] text-[#EDEBE7]">
+                          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 font-semibold text-emerald-200">
+                            {item.tag}
+                          </span>
+                          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D5D1C8]">
+                            {item.spec}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Floating 16:9 Video Player (Capgemini Style) */}
+                      <div className="lg:col-span-7">
+                        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black aspect-video group">
+                          <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${item.videoId}?rel=0&modestbranding=1`}
+                            title={`Global Aadhar Video Showcase ${item.number} - ${item.headline}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] font-deck-body text-[#D5D1C8]/80 pt-3 px-1">
+                          <span>✦ 4K Ultra HD Broadcast Quality</span>
+                          <span>Global Aadhar Panjim Bureau</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </motion.div>
             )}
 
