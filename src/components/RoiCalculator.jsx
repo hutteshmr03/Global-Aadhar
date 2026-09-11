@@ -1,6 +1,8 @@
-import React, { useState, useMemo } from 'react';
-import { Calculator, Eye, Sparkles, ArrowRight, ShieldCheck, TrendingUp, Award, Layers } from 'lucide-react';
+﻿import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Eye, Sparkles, ArrowRight, ShieldCheck, TrendingUp, Award, Layers } from 'lucide-react';
 import { regionalSectors } from '../data/mockData';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function RoiCalculator({ onNavigateContact }) {
   const [sectorKey, setSectorKey] = useState('pharma-corp');
@@ -40,25 +42,37 @@ export default function RoiCalculator({ onNavigateContact }) {
             <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
             <span>CAMPAIGN SCOPE & PR IMPACT ESTIMATOR</span>
           </div>
-          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest">
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest uppercase">
             INTERACTIVE ESTIMATION ENGINE
           </div>
         </div>
 
         {/* Section Heading */}
-        <div className="mb-8 sm:mb-10 space-y-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 sm:mb-10 space-y-2"
+        >
           <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
             Estimate Your Strategic PR & Media Impact
           </h2>
           <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-2xl leading-relaxed">
             Configure your industry sector, media distribution breadth, and engagement horizon to calculate projected editorial reach, advertising value equivalency (AVE), and stakeholder engagement.
           </p>
-        </div>
+        </motion.div>
 
         {/* Calculator Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Controls Panel */}
-          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md space-y-5 flex flex-col justify-between">
+          <motion.div 
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md space-y-5 flex flex-col justify-between"
+          >
             <div className="space-y-4">
               <div className="flex items-center gap-2 pb-3 border-b border-[#D5D1C8] text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
                 <Sparkles className="w-4 h-4 text-[#2D5A54]" />
@@ -72,7 +86,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                     key={key}
                     type="button"
                     onClick={() => setSectorKey(key)}
-                    className={`p-2.5 rounded-xl text-xs font-deck-body font-semibold text-center transition-all cursor-pointer ${
+                    className={`p-3 rounded-xl text-xs font-deck-body font-bold text-center transition-all cursor-pointer ${
                       sectorKey === key
                         ? 'bg-[#2D5A54] text-white shadow-xs border border-[#2D5A54]'
                         : 'bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54]'
@@ -91,7 +105,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
                       Target Media & Press Outlets
                     </span>
-                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-2.5 py-0.5 rounded-md border border-[#D5D1C8]">
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-3 py-1 rounded-full border border-[#D5D1C8]">
                       {outletCount} Outlets
                     </span>
                   </div>
@@ -115,7 +129,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
                       Engagement Horizon
                     </span>
-                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-2.5 py-0.5 rounded-md border border-[#D5D1C8]">
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-3 py-1 rounded-full border border-[#D5D1C8]">
                       {durationMonths} {durationMonths === 1 ? 'Month' : 'Months'}
                     </span>
                   </div>
@@ -134,7 +148,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                 </div>
 
                 {/* Tech Integration Toggle */}
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#E5E3DE] border border-[#D5D1C8]">
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#E5E3DE] border border-[#D5D1C8]">
                   <div className="flex items-center gap-2.5">
                     <Layers className="w-4 h-4 text-[#2D5A54] shrink-0" />
                     <div>
@@ -156,12 +170,19 @@ export default function RoiCalculator({ onNavigateContact }) {
               <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A54]" />
               <span>Calculations modeled on audited Western India media circulation & broadcast viewership.</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Results Output Panel */}
-          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl bg-[#23413C] text-white border border-[#2D5A54] shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, x: 15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-[#1A332F] text-white border border-[#2D5A54] shadow-2xl flex flex-col justify-between relative overflow-hidden"
+          >
             {/* Ambient Lighting */}
-            <div className="absolute -top-24 -right-24 w-60 h-60 rounded-full bg-[#2D5A54]/30 blur-2xl pointer-events-none"></div>
+            <div className="absolute -top-24 -right-24 w-60 h-60 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none"></div>
+            <div className="absolute -bottom-24 -left-24 w-60 h-60 rounded-full bg-[#2D5A54]/30 blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10 space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-white/15">
@@ -169,49 +190,49 @@ export default function RoiCalculator({ onNavigateContact }) {
                   <Award className="w-4 h-4 text-emerald-300" />
                   Projected Strategic PR Metrics
                 </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 border border-white/20">
+                <span className="text-[10px] font-bold px-3 py-1 rounded-full bg-white/10 text-emerald-300 border border-white/20">
                   ESTIMATED VALUE
                 </span>
               </div>
 
               {/* 4 Metric Cards */}
               <div className="grid grid-cols-2 gap-3.5">
-                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Eye className="w-3.5 h-3.5 text-emerald-300" /> Total Impressions
                   </div>
                   <div className="text-2xl sm:text-3xl font-deck-headline text-white">
-                    {calculated.impressions}
+                    <AnimatedCounter value={calculated.impressions} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Verified Readership & Viewers</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Award className="w-3.5 h-3.5 text-emerald-300" /> Advertising Value (AVE)
                   </div>
                   <div className="text-2xl sm:text-3xl font-deck-headline text-emerald-300">
-                    {calculated.aveValue}
+                    <AnimatedCounter value={calculated.aveValue} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Equivalent Paid Media Worth</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Layers className="w-3.5 h-3.5 text-emerald-300" /> Media Placements
                   </div>
                   <div className="text-xl sm:text-2xl font-deck-headline text-white">
-                    {calculated.placements}
+                    <AnimatedCounter value={calculated.placements} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Print, Digital & TV Features</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                  <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-300" /> Stakeholder Lift
                   </div>
                   <div className="text-xl sm:text-2xl font-deck-headline text-emerald-300">
-                    {calculated.surge}
+                    <AnimatedCounter value={calculated.surge} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Inbound Trust & Engagement</div>
                 </div>
@@ -221,17 +242,18 @@ export default function RoiCalculator({ onNavigateContact }) {
             {/* CTA in Panel */}
             <div className="relative z-10 pt-6">
               <button
+                type="button"
                 onClick={() => {
                   if (onNavigateContact) onNavigateContact();
                   else window.location.hash = '#contact';
                 }}
-                className="w-full py-3 px-5 rounded-xl bg-white text-[#23413C] hover:bg-[#EDEBE7] font-deck-body text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                className="w-full py-3.5 px-5 rounded-2xl bg-white text-[#1A332F] hover:bg-[#EDEBE7] font-deck-body text-xs sm:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Discuss This Campaign Scope With Our Panjim Bureau</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

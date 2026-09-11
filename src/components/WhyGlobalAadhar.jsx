@@ -1,136 +1,133 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, Settings, MessageSquare, Handshake } from 'lucide-react';
-import { whyGlobalAadharContent, brandMeta } from '../data/brandContent';
+import { Radio, Users, Compass, Layers, Cloud, BarChart3, ArrowUpRight } from 'lucide-react';
+import { brandMeta } from '../data/brandContent';
 
-import FeatureCard from './FeatureCard';
+const advantages = [
+  {
+    number: "01",
+    icon: Radio,
+    title: "Media Access",
+    tagline: "Direct Broadcast & Print Ties",
+    description: "Direct editorial relationships with television news networks, digital publishers, and leading daily print publications across Goa and Western India."
+  },
+  {
+    number: "02",
+    icon: Users,
+    title: "Stakeholder Relationships",
+    tagline: "Institutional & Community Reach",
+    description: "Deep-rooted networks across government departments, state bodies, NGOs, and community leaders ensuring faster coordination and credible endorsements."
+  },
+  {
+    number: "03",
+    icon: Compass,
+    title: "Local Knowledge & Execution",
+    tagline: "On-Ground Regional Agility",
+    description: "Unrivalled regional cultural understanding, linguistic nuance (English, Konkani, Marathi), and on-ground deployment capabilities."
+  },
+  {
+    number: "04",
+    icon: Layers,
+    title: "Integrated Communications",
+    tagline: "One Unified Strategy",
+    description: "A single synchronized strategy tying PR narrative, media production, experiential events, digital marketing, and software systems."
+  },
+  {
+    number: "05",
+    icon: Cloud,
+    title: "Technology Support via Sumant Cloud",
+    tagline: "Enterprise Software & Automation",
+    description: "Dedicated technology capabilities powering web platforms, workflow automation, CRM integrations, and digital transformation dashboards."
+  },
+  {
+    number: "06",
+    icon: BarChart3,
+    title: "Measurable Impact",
+    tagline: "Data-Driven ROI & Reporting",
+    description: "Every campaign tracked with analytics, every CSR story documented with beneficiary proof, and every PR effort analytically reported."
+  }
+];
 
-export default function WhyGlobalAadhar() {
+export default function WhyGlobalAadhar({ onNavigateContact }) {
   return (
-    <section id="why-us" className="deck-section bg-[#E5E3DE] scroll-mt-32">
-      <div className="deck-container">
+    <section id="why-us" className="deck-section bg-[#E5E3DE] scroll-mt-28">
+      <div className="deck-container space-y-8 sm:space-y-12">
         {/* Slide Header */}
         <div className="slide-header-bar">
-          <div className="flex items-center gap-2 text-[#2D5A54]">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
+            <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
             <span>{brandMeta.name}</span>
           </div>
-          <div className="text-[#555555]">
-            SLIDE 03 • WHY GLOBAL AADHAR
+          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest uppercase">
+            WHY GLOBAL AADHAR • 6 CORE ADVANTAGES
           </div>
         </div>
 
-        {/* Headline & Intro */}
+        {/* Section Headline */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-8 sm:mb-10 space-y-3 max-w-3xl"
+          className="space-y-3 max-w-3xl"
         >
+          <div className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
+            Our Distinct Strategic Edge
+          </div>
           <h2 className="deck-section-title">
-            {whyGlobalAadharContent.headline}
+            SIX PROVEN ADVANTAGES POWERING YOUR BRAND
           </h2>
           <p className="deck-section-intro">
-            {whyGlobalAadharContent.intro}
+            Consolidating multi-channel PR access, institutional state networks, and enterprise technology under one agile delivery model across Western India.
           </p>
         </motion.div>
 
-        {/* 2-Column Advantage Layout (Generous Gap & Alignment) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-          {/* Left: Image with Clean Embedded Floating Badges */}
-          <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 relative flex flex-col group"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-[#D5D1C8] flex-1 min-h-[340px] sm:min-h-[400px] transition-shadow duration-300">
-              <img
-                src={whyGlobalAadharContent.image}
-                alt="Global Aadhar Team"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#23413C]/80 via-transparent to-black/20"></div>
-
-              {/* Badges Over Image with Clean Margins */}
-              <div className="absolute top-3.5 left-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
-                <Camera className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Media Production</span>
-              </div>
-
-              <div className="absolute top-3.5 right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
-                <Handshake className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Institutional Trust</span>
-              </div>
-
-              <div className="absolute bottom-3.5 left-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
-                <Settings className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Sumant Cloud Tech</span>
-              </div>
-
-              <div className="absolute bottom-3.5 right-3.5 p-2 sm:p-2.5 rounded-xl bg-[#EDEBE7]/95 backdrop-blur-md border border-[#D5D1C8] shadow-xs text-[#2D5A54] flex items-center gap-1.5 hover:bg-white transition-colors">
-                <MessageSquare className="w-3.5 h-3.5 text-[#2D5A54]" />
-                <span className="font-deck-body text-[10px] sm:text-[11px] font-bold text-[#2D5A54]">Strategic PR</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right: Stacked Advantage Items (Standard Modern SaaS Feature Cards) */}
-          <div className="lg:col-span-7 flex flex-col gap-5 lg:gap-6 justify-between">
-            {[
-              {
-                badge: "ADVANTAGE 01",
-                title: "Media Access & Relations",
-                description: "Direct relationships with TV channels, digital platforms, and print media across Goa and beyond, securing trusted editorial placement.",
-                bullets: [
-                  "Tier-1 Regional & National Press",
-                  "Direct TV & Broadcast News Access",
-                  "Guaranteed Editorial Placement"
-                ]
-              },
-              {
-                badge: "ADVANTAGE 02",
-                title: "Stakeholder & Institutional Trust",
-                description: "Established networks spanning government departments, NGOs, institutional bodies, and community leaders for rapid, credible endorsements.",
-                bullets: [
-                  "Government Liaison & Clearances",
-                  "NGO & Civil Society Partnerships",
-                  "Credible Third-Party Endorsement"
-                ]
-              },
-              {
-                badge: "ADVANTAGE 03",
-                title: "Local Knowledge & Sumant Cloud Tech",
-                description: "Rooted in Goa with deep regional insight, cultural understanding, on-ground execution, and proprietary technology via Sumant Cloud.",
-                bullets: [
-                  "Hyper-Local Cultural Insight",
-                  "End-to-End On-Ground Execution",
-                  "Sumant Cloud Tech Automation"
-                ]
-              }
-            ].map((point, idx) => (
+        {/* Burson-Style 6-Point Expertise Grid (Clean, Restrained Whitespace, Confident Labels) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {advantages.map((adv, idx) => {
+            const Icon = adv.icon;
+            return (
               <motion.div
-                key={point.title}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                key={adv.number}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.12 }}
-                className="h-full"
+                transition={{ duration: 0.45, delay: idx * 0.07 }}
+                className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
-                <FeatureCard
-                  icon={`0${idx + 1}`}
-                  badge={point.badge}
-                  title={point.title}
-                  description={point.description}
-                  bullets={point.bullets}
-                  ctaText="Explore Advantage"
-                  ctaHref="#contact"
-                />
+                <div>
+                  {/* Top Bar: Icon Badge & Number */}
+                  <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#D5D1C8]/60">
+                    <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-all duration-300 flex items-center justify-center font-bold">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="font-deck-headline text-xs text-[#555555] group-hover:text-[#2D5A54] transition-colors">
+                      {adv.number}
+                    </span>
+                  </div>
+
+                  {/* Title & Tagline */}
+                  <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54] tracking-tight leading-snug mb-1">
+                    {adv.title}
+                  </h3>
+                  <div className="text-[11px] font-deck-body font-bold text-[#555555] uppercase tracking-wider mb-3">
+                    {adv.tagline}
+                  </div>
+
+                  {/* Editorial Body */}
+                  <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
+                    {adv.description}
+                  </p>
+                </div>
+
+                {/* Bottom Detail Link */}
+                <div className="pt-4 mt-4 border-t border-[#D5D1C8]/60 flex items-center justify-between text-xs font-bold text-[#2D5A54] font-deck-body">
+                  <span>Strategic Capability</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

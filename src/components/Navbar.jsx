@@ -8,7 +8,7 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 30);
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
         const currentProgress = (window.scrollY / totalScroll) * 100;
@@ -48,12 +48,12 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
   };
 
   return (
-    <header className="sticky top-2 sm:top-3.5 z-50 px-3 sm:px-6 lg:px-8 max-w-[1340px] mx-auto w-full transition-all duration-300">
-      {/* Floating Capsule Bar */}
-      <div className={`w-full rounded-2xl sm:rounded-full transition-all duration-300 border border-[#D5D1C8] border-b-2 border-b-[#2D5A54] relative backdrop-blur-md ${
+    <header className="sticky top-2 sm:top-3 z-50 px-3 sm:px-6 lg:px-8 max-w-[1340px] mx-auto w-full transition-all duration-300">
+      {/* Floating Condensing Capsule Bar (Media Mantra Shrink & Solidify on Scroll) */}
+      <div className={`w-full rounded-2xl sm:rounded-full transition-all duration-300 border border-[#D5D1C8] border-b-2 border-b-[#2D5A54] relative ${
         scrolled 
-          ? 'bg-[#EDEBE7]/98 shadow-xl py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8' 
-          : 'bg-[#EDEBE7]/95 shadow-md py-3 sm:py-3.5 px-4 sm:px-6 lg:px-8'
+          ? 'bg-[#EDEBE7]/98 backdrop-blur-xl shadow-xl py-2 sm:py-2.5 px-4 sm:px-6 lg:px-8 scale-[0.99]' 
+          : 'bg-[#EDEBE7]/85 backdrop-blur-md shadow-md py-3 sm:py-3.5 px-4 sm:px-6 lg:px-8 scale-100'
       }`}>
         {/* Integrated Scroll Progress Line */}
         <div 
@@ -72,7 +72,9 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
             onClick={handleBrandClick} 
             className="flex flex-col group text-decoration-none cursor-pointer shrink-0"
           >
-            <div className="font-deck-headline text-base sm:text-lg xl:text-xl font-bold text-[#2D5A54] tracking-tight leading-none group-hover:text-[#23413C] transition-colors whitespace-nowrap">
+            <div className={`font-deck-headline font-bold text-[#2D5A54] tracking-tight leading-none group-hover:text-[#23413C] transition-all whitespace-nowrap ${
+              scrolled ? 'text-base sm:text-lg xl:text-xl' : 'text-lg sm:text-xl xl:text-2xl'
+            }`}>
               GLOBAL AADHAR
             </div>
             <div className="font-deck-body text-[8px] sm:text-[9px] font-bold text-[#555555] tracking-[0.16em] uppercase mt-0.5 whitespace-nowrap">
@@ -111,7 +113,9 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
             <button
               type="button"
               onClick={() => onNavigateContact ? onNavigateContact() : (window.location.hash = '#contact')}
-              className="hidden sm:inline-flex btn-primary-teal text-xs py-2 px-5 rounded-full cursor-pointer shadow-sm hover:shadow-md transition-all whitespace-nowrap font-bold"
+              className={`hidden sm:inline-flex btn-primary-teal px-5 rounded-full cursor-pointer shadow-sm hover:shadow-md transition-all whitespace-nowrap font-bold ${
+                scrolled ? 'text-xs py-1.5' : 'text-xs py-2'
+              }`}
             >
               <span>Let's Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
@@ -121,7 +125,7 @@ export default function Navbar({ currentPage = 'home', onNavigateContact, onNavi
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full border border-[#D5D1C8] bg-[#E5E3DE] text-[#2D5A54] hover:bg-white transition-colors cursor-pointer shadow-2xs flex items-center justify-center w-9 h-9"
+              className="lg:hidden p-2 rounded-full border border-[#D5D1C8] bg-[#EDEBE7] text-[#2D5A54] hover:bg-white transition-colors cursor-pointer shadow-2xs flex items-center justify-center w-9 h-9"
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}

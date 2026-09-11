@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, ArrowRight, X, Newspaper, 
   Briefcase, HeartHandshake, Building2, Cloud, CheckCircle2 
 } from 'lucide-react';
+import AnimatedCounter from './AnimatedCounter';
 
 const storyTabs = [
   { label: '01. CSR & Community', index: 0, icon: HeartHandshake },
@@ -141,7 +142,7 @@ export default function CaseStudies({ onNavigateContact }) {
                 <div className="flex items-center gap-2 flex-wrap pt-1">
                   {activeCase.metrics.slice(0, 2).map((m, idx) => (
                     <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#EDEBE7] border border-[#D5D1C8] text-xs font-bold font-deck-body text-[#2D5A54]">
-                      <span className="font-deck-headline text-sm text-[#2D5A54]">{m.value}</span>
+                      <span className="font-deck-headline text-sm text-[#2D5A54]"><AnimatedCounter value={m.value} /></span>
                       <span className="text-[10px] text-[#555555] font-semibold uppercase">{m.label}</span>
                     </span>
                   ))}
@@ -271,7 +272,7 @@ export default function CaseStudies({ onNavigateContact }) {
                     {activeCase.metrics.map((m, idx) => (
                       <div key={idx} className="p-3.5 rounded-xl bg-white border border-[#D5D1C8] text-center shadow-2xs">
                         <div className="font-deck-headline text-xl text-[#2D5A54]">
-                          {m.value}
+                          <AnimatedCounter value={m.value} />
                         </div>
                         <div className="text-[10px] font-bold text-[#555555] font-deck-body mt-1 uppercase tracking-wider">
                           {m.label}
