@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { coreServicesContent } from '../data/brandContent';
@@ -41,10 +41,11 @@ export default function ServicesPage({ onNavigateContact, onNavigateService, onN
           </p>
         </motion.div>
 
-        {/* Unified Services Component with 6 Core Cards, Events Lifecycle, and 4K Video Player */}
+        {/* Unified Services Component with 6 Core Cards and Events Lifecycle (Video Showcase excluded on this page) */}
         <Services 
           onNavigateContact={onNavigateContact}
           onNavigateService={onNavigateService}
+          showVideoShowcase={false}
         />
 
         {/* Bottom CTA Consultation Band */}

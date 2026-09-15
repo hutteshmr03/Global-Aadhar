@@ -44,11 +44,7 @@ export default function Hero({ onNavigateContact, onNavigateService }) {
           transition={{ duration: 0.5 }}
           className="slide-header-bar"
         >
-          <div className="flex items-center gap-2.5 font-deck-body font-bold text-[#2D5A54]">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2D5A54] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#2D5A54]"></span>
-            </span>
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
             <span>{brandMeta.name}</span>
           </div>
           <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest uppercase">

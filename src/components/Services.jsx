@@ -25,7 +25,7 @@ const serviceBadges = {
   'technology-solutions': '06 • SUMANT CLOUD'
 };
 
-export default function Services({ onNavigateService, onNavigateContact }) {
+export default function Services({ onNavigateService, onNavigateContact, showVideoShowcase = true }) {
   const services = coreServicesContent.services;
   const [selectedPrVideo, setSelectedPrVideo] = useState(0);
   const [playingVideoIndex, setPlayingVideoIndex] = useState(null);
@@ -196,161 +196,163 @@ export default function Services({ onNavigateService, onNavigateContact }) {
         </motion.div>
 
         {/* CAPGEMINI-STYLE STACKING YOUTUBE VIDEO DECK */}
-        <div id="media-showcase-player" className="relative pt-4 scroll-mt-28 space-y-8 sm:space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div className="space-y-2 max-w-2xl">
-              <span className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
-                Media Production & Broadcast Wire
-              </span>
-              <h3 className="font-deck-headline text-2xl sm:text-3xl text-[#2D5A54]">
-                CINEMATIC STORYTELLING & PRESS SHOWCASES
-              </h3>
+        {showVideoShowcase && (
+          <div id="media-showcase-player" className="relative pt-4 scroll-mt-28 space-y-8 sm:space-y-12">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="space-y-2 max-w-2xl">
+                <span className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
+                  Media Production & Broadcast Wire
+                </span>
+                <h3 className="font-deck-headline text-2xl sm:text-3xl text-[#2D5A54]">
+                  CINEMATIC STORYTELLING & PRESS SHOWCASES
+                </h3>
+              </div>
+
+              {/* Video Quick Switcher Buttons */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+                {videoShowcases.map((v, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSelectedPrVideo(idx)}
+                    className={`px-3.5 py-1.5 rounded-xl font-deck-body text-xs font-bold transition-all cursor-pointer ${
+                      selectedPrVideo === idx 
+                        ? 'bg-[#2D5A54] text-white shadow-xs' 
+                        : 'bg-[#EDEBE7] text-[#555555] border border-[#D5D1C8] hover:border-[#2D5A54]'
+                    }`}
+                  >
+                    Video {v.number}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Video Quick Switcher Buttons */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
-              {videoShowcases.map((v, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setSelectedPrVideo(idx)}
-                  className={`px-3.5 py-1.5 rounded-xl font-deck-body text-xs font-bold transition-all cursor-pointer ${
-                    selectedPrVideo === idx 
-                      ? 'bg-[#2D5A54] text-white shadow-xs' 
-                      : 'bg-[#EDEBE7] text-[#555555] border border-[#D5D1C8] hover:border-[#2D5A54]'
-                  }`}
-                >
-                  Video {v.number}
-                </button>
-              ))}
-            </div>
-          </div>
+            {/* Sticky Stacking Deck Container */}
+            <div className="relative space-y-8 sm:space-y-12">
+              {videoShowcases.map((item, idx) => {
+                const isHovered = selectedPrVideo === idx;
 
-          {/* Sticky Stacking Deck Container */}
-          <div className="relative space-y-8 sm:space-y-12">
-            {videoShowcases.map((item, idx) => {
-              const isHovered = selectedPrVideo === idx;
+                return (
+                  <motion.div
+                    key={item.number}
+                    onMouseEnter={() => setSelectedPrVideo(idx)}
+                    animate={{
+                      scale: isHovered ? 1.01 : 0.985,
+                      y: isHovered ? 0 : 6,
+                      opacity: isHovered ? 1 : 0.92
+                    }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className={`sticky ${item.topSticky} ${item.zIndex} rounded-3xl overflow-hidden bg-[#1A332F] text-white border-2 ${
+                      isHovered ? 'border-emerald-400/80 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)]' : 'border-[#2D5A54] shadow-2xl'
+                    } p-6 sm:p-10 lg:p-12 transition-all duration-700 ease-out`}
+                  >
+                    {/* Ambient Glow */}
+                    <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-[#2D5A54]/30 blur-3xl pointer-events-none"></div>
+                    <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
 
-              return (
-                <motion.div
-                  key={item.number}
-                  onMouseEnter={() => setSelectedPrVideo(idx)}
-                  animate={{
-                    scale: isHovered ? 1.01 : 0.985,
-                    y: isHovered ? 0 : 6,
-                    opacity: isHovered ? 1 : 0.92
-                  }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className={`sticky ${item.topSticky} ${item.zIndex} rounded-3xl overflow-hidden bg-[#1A332F] text-white border-2 ${
-                    isHovered ? 'border-emerald-400/80 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)]' : 'border-[#2D5A54] shadow-2xl'
-                  } p-6 sm:p-10 lg:p-12 transition-all duration-700 ease-out`}
-                >
-                  {/* Ambient Glow */}
-                  <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-[#2D5A54]/30 blur-3xl pointer-events-none"></div>
-                  <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
-
-                  <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    {/* Left Column: Messaging */}
-                    <div className="lg:col-span-5 space-y-4">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 ring-4 ring-emerald-500/20"></span>
-                        <span className="font-deck-body text-[11px] font-bold text-emerald-300 uppercase tracking-[0.2em]">
-                          {item.eyebrow} • {item.number}
-                        </span>
-                      </div>
-
-                      <h3 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
-                        {item.headline}
-                      </h3>
-
-                      <p className="font-deck-body text-xs sm:text-sm text-[#D5D1C8] leading-relaxed">
-                        {item.subtitle}
-                      </p>
-
-                      <div className="pt-2 flex flex-wrap items-center gap-2 font-deck-body text-[11px] text-[#EDEBE7]">
-                        <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 font-semibold text-emerald-200">
-                          {item.tag}
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D5D1C8]">
-                          {item.spec}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Right Column: Floating 16:9 Showcase Frame */}
-                    <div className="lg:col-span-7">
-                      {playingVideoIndex === idx ? (
-                        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-emerald-400 shadow-2xl bg-black aspect-video">
-                          <iframe
-                            className="w-full h-full"
-                            src={`https://www.youtube-nocookie.com/embed/${item.videoId}?autoplay=1&rel=0&modestbranding=1`}
-                            title={`Global Aadhar Video Showcase ${item.number} - ${item.headline}`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setPlayingVideoIndex(null);
-                            }}
-                            className="absolute top-3 right-3 px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-deck-body font-bold border border-white/20 backdrop-blur-md transition-all cursor-pointer shadow-lg z-20"
-                          >
-                            ✕ Close Video
-                          </button>
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                      {/* Left Column: Messaging */}
+                      <div className="lg:col-span-5 space-y-4">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 ring-4 ring-emerald-500/20"></span>
+                          <span className="font-deck-body text-[11px] font-bold text-emerald-300 uppercase tracking-[0.2em]">
+                            {item.eyebrow} • {item.number}
+                          </span>
                         </div>
-                      ) : (
-                        <div 
-                          onClick={() => setPlayingVideoIndex(idx)}
-                          className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black aspect-video group cursor-pointer"
-                        >
-                          <img
-                            src={item.image}
-                            alt={`Global Aadhar Production Showcase ${item.number} - ${item.headline}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-90"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-between p-5 sm:p-6">
-                            <div className="flex justify-end">
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10.5px] font-semibold text-emerald-300 font-deck-body">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                Click to Play Showcase
-                              </span>
-                            </div>
 
-                            <div className="flex items-center gap-3 sm:gap-4">
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setPlayingVideoIndex(idx);
-                                }}
-                                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-emerald-400 transition-all duration-300 shrink-0 cursor-pointer border-2 border-white/40"
-                              >
-                                <Play className="w-6 h-6 fill-white ml-0.5" />
-                              </button>
-                              <div>
-                                <div className="text-xs sm:text-sm font-bold text-white font-deck-body group-hover:text-emerald-300 transition-colors">
-                                  {item.status}
-                                </div>
-                                <div className="text-[10px] sm:text-[11px] text-[#D5D1C8] font-deck-body">
-                                  Click to Watch • Broadcast & 4K Master Asset
+                        <h3 className="font-deck-headline text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                          {item.headline}
+                        </h3>
+
+                        <p className="font-deck-body text-xs sm:text-sm text-[#D5D1C8] leading-relaxed">
+                          {item.subtitle}
+                        </p>
+
+                        <div className="pt-2 flex flex-wrap items-center gap-2 font-deck-body text-[11px] text-[#EDEBE7]">
+                          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 font-semibold text-emerald-200">
+                            {item.tag}
+                          </span>
+                          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D5D1C8]">
+                            {item.spec}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Floating 16:9 Showcase Frame */}
+                      <div className="lg:col-span-7">
+                        {playingVideoIndex === idx ? (
+                          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-emerald-400 shadow-2xl bg-black aspect-video">
+                            <iframe
+                              className="w-full h-full"
+                              src={`https://www.youtube-nocookie.com/embed/${item.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                              title={`Global Aadhar Video Showcase ${item.number} - ${item.headline}`}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                            ></iframe>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPlayingVideoIndex(null);
+                              }}
+                              className="absolute top-3 right-3 px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-deck-body font-bold border border-white/20 backdrop-blur-md transition-all cursor-pointer shadow-lg z-20"
+                            >
+                              ✕ Close Video
+                            </button>
+                          </div>
+                        ) : (
+                          <div 
+                            onClick={() => setPlayingVideoIndex(idx)}
+                            className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black aspect-video group cursor-pointer"
+                          >
+                            <img
+                              src={item.image}
+                              alt={`Global Aadhar Production Showcase ${item.number} - ${item.headline}`}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-90"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-between p-5 sm:p-6">
+                              <div className="flex justify-end">
+                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10.5px] font-semibold text-emerald-300 font-deck-body">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                  Click to Play Showcase
+                                </span>
+                              </div>
+
+                              <div className="flex items-center gap-3 sm:gap-4">
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setPlayingVideoIndex(idx);
+                                  }}
+                                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-emerald-400 transition-all duration-300 shrink-0 cursor-pointer border-2 border-white/40"
+                                >
+                                  <Play className="w-6 h-6 fill-white ml-0.5" />
+                                </button>
+                                <div>
+                                  <div className="text-xs sm:text-sm font-bold text-white font-deck-body group-hover:text-emerald-300 transition-colors">
+                                    {item.status}
+                                  </div>
+                                  <div className="text-[10px] sm:text-[11px] text-[#D5D1C8] font-deck-body">
+                                    Click to Watch • Broadcast & 4K Master Asset
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        )}
+                        <div className="flex items-center justify-between text-[11px] font-deck-body text-[#D5D1C8]/80 pt-3 px-1">
+                          <span>✦ {item.tag}</span>
+                          <span>Global Aadhar Panjim Bureau</span>
                         </div>
-                      )}
-                      <div className="flex items-center justify-between text-[11px] font-deck-body text-[#D5D1C8]/80 pt-3 px-1">
-                        <span>✦ {item.tag}</span>
-                        <span>Global Aadhar Panjim Bureau</span>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

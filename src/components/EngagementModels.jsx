@@ -1,93 +1,81 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Target, Award, Share2, Heart, Cpu, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { 
+  Calendar, 
+  Target, 
+  Award, 
+  Share2, 
+  Heart, 
+  Cpu, 
+  ArrowRight, 
+  CheckCircle2, 
+  Sparkles, 
+  Layers
+} from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
 
-export default function EngagementModels({ onNavigateContact }) {
-  const engagementModels = [
-    {
-      icon: Calendar,
-      badge: "MONTHLY RETAINER",
-      title: "Monthly PR Retainer",
-      description: "Ongoing strategic communications, daily media desk monitoring, continuous press pitching, and crisis advisory on a retained partnership basis.",
-      bullets: [
-        "Dedicated Panjim PR Account Lead",
-        "Monthly Press Release & Editorial Cycle",
-        "24/7 Crisis Holding Statements & Advisory"
-      ]
-    },
-    {
-      icon: Target,
-      badge: "PROJECT SPRINT",
-      title: "Project-Based Campaigns",
-      description: "Targeted, time-bound communication sprints for product launches, policy announcements, or specific corporate milestones.",
-      bullets: [
-        "Defined 30–90 Day Timeline & Output SLA",
-        "High-Impact Narrative & Media Asset Pack",
-        "Multi-Outlet Editorial Placement Wrap"
-      ]
-    },
-    {
-      icon: Award,
-      badge: "EVENT SUITE",
-      title: "Event Packages",
-      description: "Turnkey planning, production staging, VIP stakeholder coordination, and live media distribution for institutional summits.",
-      bullets: [
-        "End-to-End AV & Stage Production Rigging",
-        "Regional Press Invitations & Press Room Desk",
-        "Post-Event Syndication & Impact Dossier"
-      ]
+export default function EngagementModels({ onNavigateContact, onNavigateCommercialModels, onNavigatePage }) {
+  const handleExploreClick = (e) => {
+    if (e) e.preventDefault();
+    if (onNavigateCommercialModels) {
+      onNavigateCommercialModels();
+    } else if (onNavigatePage) {
+      onNavigatePage('commercial-models');
+    } else {
+      window.location.hash = '#/commercial-models';
     }
-  ];
+  };
 
-  const commercialModels = [
-    {
-      icon: Share2,
-      badge: "DIGITAL RETAINER",
-      title: "Digital Retainer",
-      description: "Dedicated social media management, executive LinkedIn profiling, SEO, and continuous online sentiment monitoring.",
-      bullets: [
-        "Executive Thought Leadership Formats",
-        "Search Engine Optimization (SEO & SERP)",
-        "Live Audience Sentiment & Analytics"
-      ]
-    },
-    {
-      icon: Heart,
-      badge: "CSR MANDATE",
-      title: "CSR Communication Programs",
-      description: "Documentary filmmaking, beneficiary storytelling, and statutory reporting to turn social investments into public credibility.",
-      bullets: [
-        "On-Ground Field Video Stories & Reels",
-        "Statutory CSR Impact Dossiers for Funders",
-        "Multi-Stakeholder Briefing Roundtables"
-      ]
-    },
-    {
-      icon: Cpu,
-      badge: "SUMANT CLOUD",
-      title: "Integrated PR + Technology",
-      description: "Full-scale combination of strategic PR storytelling with custom Sumant Cloud software, CRM automation, and portals.",
-      bullets: [
-        "Custom E-DMS & CMMS Software Portals",
-        "Automated Media Workflow Pipelines",
-        "Single-SLA Unified Tech + PR Delivery"
-      ]
-    }
-  ];
-
-  const handleCtaClick = (e) => {
+  const handleContactClick = (e) => {
     if (e) e.preventDefault();
     if (onNavigateContact) {
       onNavigateContact();
+    } else if (onNavigatePage) {
+      onNavigatePage('contact');
     } else {
       window.location.hash = '#contact';
     }
   };
 
+  const strategicPrPoints = [
+    {
+      title: "Monthly PR Retainer",
+      tag: "Ongoing",
+      description: "Dedicated Panjim PR account lead, daily media monitoring, monthly press cycles & 24/7 crisis advisory."
+    },
+    {
+      title: "Project-Based Campaigns",
+      tag: "30–90 Days",
+      description: "Time-bound communications for product launches, milestones, policy announcements & editorial wraps."
+    },
+    {
+      title: "Event PR Packages",
+      tag: "Turnkey",
+      description: "AV & stage staging, VIP press room management, live regional broadcasting & post-event dossiers."
+    }
+  ];
+
+  const commercialTechPoints = [
+    {
+      title: "Digital & Social Retainer",
+      tag: "Digital",
+      description: "Executive LinkedIn thought leadership, SEO/SERP authority, digital press kits & real-time analytics."
+    },
+    {
+      title: "CSR Communication Programs",
+      tag: "Impact",
+      description: "On-ground documentary storytelling, beneficiary reels, and statutory ESG impact dossiers for funders."
+    },
+    {
+      title: "Integrated PR + Technology",
+      tag: "Sumant Cloud",
+      description: "Unified storytelling with custom Sumant Cloud software portals, CRM automations & single-SLA delivery."
+    }
+  ];
+
   return (
     <section id="models" className="deck-section bg-[#E5E3DE] scroll-mt-28">
-      <div className="deck-container space-y-8 sm:space-y-12">
+      <div className="deck-container space-y-6 sm:space-y-8">
         {/* Slide Header */}
         <div className="slide-header-bar">
           <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
@@ -100,156 +88,196 @@ export default function EngagementModels({ onNavigateContact }) {
         </div>
 
         {/* Section Headline */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="space-y-2 max-w-2xl"
+          >
+            <div className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
+              Flexible Collaboration Frameworks
+            </div>
+            <h2 className="deck-section-title text-2xl sm:text-3xl">
+              FLEXIBLE ENGAGEMENT & COMMERCIAL STRUCTURES
+            </h2>
+            <p className="deck-section-intro text-xs sm:text-sm">
+              Scalable engagement formats designed to match your organizational scale — from retained advisory to integrated PR-tech suites.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="shrink-0"
+          >
+            <button
+              type="button"
+              onClick={handleExploreClick}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2D5A54] hover:bg-[#1A332F] text-white font-deck-body text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer group"
+            >
+              <span>Explore Commercial Models</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* 2 Compact & Clean Pillar Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          
+          {/* Pillar 1: Strategic PR Engagement Models */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              {/* Header */}
+              <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#D5D1C8]">
+                <h3 className="font-deck-body font-extrabold text-base sm:text-lg text-[#1A332F] tracking-tight uppercase">
+                  1. Strategic PR Engagement Models
+                </h3>
+                <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+                  <Layers className="w-4.5 h-4.5" />
+                </div>
+              </div>
+
+              {/* Clean Streamlined Points List (No nested cards) */}
+              <div className="space-y-3.5 py-1">
+                {strategicPrPoints.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-deck-body font-bold text-[13.5px] sm:text-sm text-[#1A332F]">
+                          {item.title}
+                        </span>
+                        <span className="text-[9.5px] font-deck-body font-semibold text-[#2D5A54] bg-[#2D5A54]/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                          {item.tag}
+                        </span>
+                      </div>
+                      <p className="font-deck-body text-[12.5px] text-[#4A4A4A] leading-relaxed font-normal">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Explore Button */}
+            <div className="pt-4 mt-4 border-t border-[#D5D1C8]">
+              <button
+                type="button"
+                onClick={handleExploreClick}
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#E5E3DE] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white font-deck-body text-xs font-bold uppercase tracking-wider transition-all cursor-pointer group/btn"
+              >
+                <span>View PR Retainer Details</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Pillar 2: Commercial & Tech Engagements */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.08 }}
+            className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              {/* Header */}
+              <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#D5D1C8]">
+                <h3 className="font-deck-body font-extrabold text-base sm:text-lg text-[#1A332F] tracking-tight uppercase">
+                  2. Commercial & Tech Engagements
+                </h3>
+                <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+                  <Cpu className="w-4.5 h-4.5" />
+                </div>
+              </div>
+
+              {/* Clean Streamlined Points List (No nested cards) */}
+              <div className="space-y-3.5 py-1">
+                {commercialTechPoints.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-deck-body font-bold text-[13.5px] sm:text-sm text-[#1A332F]">
+                          {item.title}
+                        </span>
+                        <span className="text-[9.5px] font-deck-body font-semibold text-[#2D5A54] bg-[#2D5A54]/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                          {item.tag}
+                        </span>
+                      </div>
+                      <p className="font-deck-body text-[12.5px] text-[#4A4A4A] leading-relaxed font-normal">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Explore Button */}
+            <div className="pt-4 mt-4 border-t border-[#D5D1C8]">
+              <button
+                type="button"
+                onClick={handleExploreClick}
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#E5E3DE] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white font-deck-body text-xs font-bold uppercase tracking-wider transition-all cursor-pointer group/btn"
+              >
+                <span>View Tech & Commercial Specs</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Compact Explore & Consultation Hub */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="space-y-3 max-w-3xl"
+          transition={{ duration: 0.4 }}
+          className="p-5 sm:p-6 rounded-2xl bg-[#1A332F] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg"
         >
-          <div className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
-            Flexible Collaboration Frameworks
+          <div className="space-y-1 text-center sm:text-left">
+            <h4 className="font-deck-headline text-base sm:text-lg text-white">
+              Need detailed retainer scopes, SLA deliverables, or ROI estimates?
+            </h4>
+            <p className="font-deck-body text-xs text-[#D5D1C8]">
+              Explore our full 6-tier commercial structure, comparison matrices, and interactive PR ROI calculator.
+            </p>
           </div>
-          <h2 className="deck-section-title">
-            FLEXIBLE ENGAGEMENT & COMMERCIAL STRUCTURES
-          </h2>
-          <p className="deck-section-intro">
-            Whether you require an ongoing strategic PR retainer, a high-octane project campaign, or an integrated PR + technology suite, our commercial models scale with your mandate.
-          </p>
+
+          <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={handleExploreClick}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1A332F] hover:bg-[#E5E3DE] font-deck-body text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm hover:scale-105"
+            >
+              <span>Explore Commercial Models</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleContactClick}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-white/30 hover:border-white text-white font-deck-body text-xs font-bold uppercase tracking-wider transition-all cursor-pointer hover:bg-white/10"
+            >
+              <span>Contact</span>
+            </button>
+          </div>
         </motion.div>
-
-        {/* Two-Column Clean Comparison Matrix */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
-          {/* Column 1: Core PR Engagement Models */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-2 pb-2 border-b-2 border-[#2D5A54]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
-              <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54]">
-                1. STRATEGIC PR ENGAGEMENT MODELS
-              </h3>
-            </div>
-
-            <div className="space-y-4">
-              {engagementModels.map((model, idx) => {
-                const Icon = model.icon;
-                return (
-                  <motion.div
-                    key={model.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="p-5 sm:p-6 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-colors flex items-center justify-center font-bold">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] font-deck-body text-[10px] font-bold uppercase tracking-wider">
-                          {model.badge}
-                        </span>
-                      </div>
-
-                      <h4 className="font-deck-headline text-lg text-[#2D5A54]">
-                        {model.title}
-                      </h4>
-
-                      <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
-                        {model.description}
-                      </p>
-
-                      <div className="space-y-1.5 pt-2 border-t border-[#D5D1C8]/60">
-                        {model.bullets.map((bullet, bIdx) => (
-                          <div key={bIdx} className="flex items-center gap-2 text-xs font-deck-body font-semibold text-[#2B2B2B]">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#2D5A54] shrink-0" />
-                            <span>{bullet}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-4 mt-2">
-                      <button
-                        type="button"
-                        onClick={handleCtaClick}
-                        className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#E5E3DE] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white font-deck-body text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-                      >
-                        <span>Select Model</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Column 2: Commercial & Tech Engagement */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-2 pb-2 border-b-2 border-[#2D5A54]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
-              <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54]">
-                2. COMMERCIAL & TECH ENGAGEMENTS
-              </h3>
-            </div>
-
-            <div className="space-y-4">
-              {commercialModels.map((model, idx) => {
-                const Icon = model.icon;
-                return (
-                  <motion.div
-                    key={model.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="p-5 sm:p-6 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-colors flex items-center justify-center font-bold">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] font-deck-body text-[10px] font-bold uppercase tracking-wider">
-                          {model.badge}
-                        </span>
-                      </div>
-
-                      <h4 className="font-deck-headline text-lg text-[#2D5A54]">
-                        {model.title}
-                      </h4>
-
-                      <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
-                        {model.description}
-                      </p>
-
-                      <div className="space-y-1.5 pt-2 border-t border-[#D5D1C8]/60">
-                        {model.bullets.map((bullet, bIdx) => (
-                          <div key={bIdx} className="flex items-center gap-2 text-xs font-deck-body font-semibold text-[#2B2B2B]">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#2D5A54] shrink-0" />
-                            <span>{bullet}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-4 mt-2">
-                      <button
-                        type="button"
-                        onClick={handleCtaClick}
-                        className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#E5E3DE] hover:bg-[#2D5A54] text-[#2D5A54] hover:text-white font-deck-body text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-                      >
-                        <span>Select Model</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

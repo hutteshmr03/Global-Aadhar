@@ -187,17 +187,18 @@ function App() {
             {/* 7. Proven Track Record & Regional Case Studies */}
             <CaseStudies onNavigateContact={() => navigateToPage('contact')} />
 
-            {/* 8. Interactive Campaign Scope & PR ROI Estimator */}
-            <RoiCalculator onNavigateContact={() => navigateToPage('contact')} />
-
-            {/* 9. Who We Serve */}
+            {/* 8. Who We Serve */}
             <WhoWeServe onNavigateContact={() => navigateToPage('contact')} />
 
             {/* 10. Why Partner With Global Aadhar */}
             <WhyPartner onNavigateContact={() => navigateToPage('contact')} />
 
             {/* 11. Engagement Models & Retainers */}
-            <EngagementModels onNavigateContact={() => navigateToPage('contact')} />
+            <EngagementModels 
+              onNavigateContact={() => navigateToPage('contact')} 
+              onNavigateCommercialModels={() => navigateToPage('commercial-models')}
+              onNavigatePage={navigateToPage}
+            />
 
             {/* 12. Full-Bleed Dark Ink CTA Band */}
             <Contact onNavigateContact={() => navigateToPage('contact')} />
