@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { caseStudies } from '../data/mockData';
 import { 
-  ChevronLeft, ChevronRight, ArrowRight, X, Newspaper, 
-  Briefcase, HeartHandshake, Building2, Cloud, CheckCircle2 
+  ChevronLeft, ChevronRight, ArrowRight, X, Newspaper, CheckCircle2 
 } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
-
-const storyTabs = [
-  { label: '01. CSR & Community', index: 0, icon: HeartHandshake },
-  { label: '02. Pharma & Corporate', index: 1, icon: Building2 },
-  { label: '03. Cloud & Digital PR', index: 2, icon: Cloud }
-];
 
 export default function CaseStudies({ onNavigateContact }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,41 +37,15 @@ export default function CaseStudies({ onNavigateContact }) {
           </div>
         </div>
 
-        {/* Section Heading & Interactive Story Switchers */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2D5A54]"></span>
-              <span>Recent Client Stories (Page {formattedPage})</span>
-            </div>
-            <h2 className="font-deck-headline text-2xl sm:text-3xl text-[#2D5A54] tracking-tight leading-tight">
-              STRATEGIC PR CAMPAIGNS THAT DELIVERED MEASURABLE IMPACT
-            </h2>
+        {/* Section Heading */}
+        <div className="space-y-2 max-w-3xl">
+          <div className="flex items-center gap-2 text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2D5A54]"></span>
+            <span>Recent Client Stories (Page {formattedPage})</span>
           </div>
-
-          {/* Direct Story / Page Select Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
-            {storyTabs.map((tab) => {
-              const TabIcon = tab.icon;
-              const isActive = currentIndex === tab.index;
-
-              return (
-                <button
-                  key={tab.index}
-                  type="button"
-                  onClick={() => setCurrentIndex(tab.index)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-deck-body text-xs font-bold tracking-wide transition-all shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'bg-[#2D5A54] text-white shadow-xs'
-                      : 'bg-[#EDEBE7] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54] hover:bg-white'
-                  }`}
-                >
-                  <TabIcon className="w-3.5 h-3.5 shrink-0" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
+          <h2 className="font-deck-headline text-2xl sm:text-3xl text-[#2D5A54] tracking-tight leading-tight">
+            STRATEGIC PR CAMPAIGNS THAT DELIVERED MEASURABLE IMPACT
+          </h2>
         </div>
 
         {/* CAPGEMINI-STYLE COMPACT PANORAMIC HERO SHOWCASE */}
@@ -154,7 +121,7 @@ export default function CaseStudies({ onNavigateContact }) {
                 {/* Bottom Row: Read More Pill Button */}
                 <div className="pt-2 border-t border-[#E5E3DE] flex items-center justify-between">
                   <span className="text-[11px] font-deck-body text-[#777777] font-semibold">
-                    Full verified metrics & client review
+                    Illustrative case framework • Subject to client sign-off
                   </span>
 
                   <button
@@ -263,10 +230,10 @@ export default function CaseStudies({ onNavigateContact }) {
                   </div>
                 </div>
 
-                {/* Full Verified Outcomes Grid */}
+                {/* Campaign Framework Scope Grid */}
                 <div className="space-y-2">
                   <div className="font-deck-body text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
-                    Measurable Campaign Outcomes:
+                    Campaign Scope & Framework Focus:
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {activeCase.metrics.map((m, idx) => (

@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Sparkles, ArrowRight, ShieldCheck, TrendingUp, Award, Layers } from 'lucide-react';
 import { regionalSectors } from '../data/mockData';
@@ -167,8 +167,8 @@ export default function RoiCalculator({ onNavigateContact }) {
             </div>
 
             <div className="text-[11px] font-deck-body text-[#555555] pt-2 border-t border-[#D5D1C8]/80 flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A54]" />
-              <span>Calculations modeled on audited Western India media circulation & broadcast viewership.</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A54] shrink-0" />
+              <span>* Illustrative scope estimation tool for planning purposes. Final campaign scope and deliverables are customized upon consultation.</span>
             </div>
           </motion.div>
 
@@ -197,7 +197,11 @@ export default function RoiCalculator({ onNavigateContact }) {
 
               {/* 4 Metric Cards */}
               <div className="grid grid-cols-2 gap-3.5">
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                <motion.div 
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 hover:bg-white/15 transition-all shadow-xs"
+                >
                   <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Eye className="w-3.5 h-3.5 text-emerald-300" /> Total Impressions
                   </div>
@@ -205,9 +209,13 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <AnimatedCounter value={calculated.impressions} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Verified Readership & Viewers</div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                <motion.div 
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 hover:bg-white/15 transition-all shadow-xs"
+                >
                   <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Award className="w-3.5 h-3.5 text-emerald-300" /> Advertising Value (AVE)
                   </div>
@@ -215,9 +223,13 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <AnimatedCounter value={calculated.aveValue} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Equivalent Paid Media Worth</div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                <motion.div 
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 hover:bg-white/15 transition-all shadow-xs"
+                >
                   <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <Layers className="w-3.5 h-3.5 text-emerald-300" /> Media Placements
                   </div>
@@ -225,9 +237,13 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <AnimatedCounter value={calculated.placements} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Print, Digital & TV Features</div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 transition-colors">
+                <motion.div 
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-xs hover:border-emerald-400/50 hover:bg-white/15 transition-all shadow-xs"
+                >
                   <div className="text-[10px] font-bold text-[#EDEBE7]/80 flex items-center gap-1.5 mb-1.5 uppercase tracking-wider">
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-300" /> Stakeholder Lift
                   </div>
@@ -235,7 +251,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                     <AnimatedCounter value={calculated.surge} />
                   </div>
                   <div className="text-[10px] text-[#EDEBE7]/70 font-deck-body mt-0.5">Inbound Trust & Engagement</div>
-                </div>
+                </motion.div>
               </div>
             </div>
 

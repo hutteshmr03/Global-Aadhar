@@ -89,16 +89,20 @@ export default function WhyGlobalAadhar({ onNavigateContact }) {
             return (
               <motion.div
                 key={adv.number}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.07 }}
-                className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                whileHover={{ y: -6, scale: 1.015 }}
+                transition={{ duration: 0.35, delay: idx * 0.06 }}
+                className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-2xl transition-colors duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
               >
-                <div>
+                {/* Ambient glow */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#2D5A54]/5 rounded-full blur-xl group-hover:bg-[#2D5A54]/15 group-hover:scale-125 transition-all duration-500 pointer-events-none"></div>
+
+                <div className="relative z-10">
                   {/* Top Bar: Icon Badge & Number */}
                   <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#D5D1C8]/60">
-                    <div className="w-9 h-9 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white transition-all duration-300 flex items-center justify-center font-bold">
+                    <div className="w-10 h-10 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 flex items-center justify-center font-bold shadow-2xs">
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="font-deck-headline text-xs text-[#555555] group-hover:text-[#2D5A54] transition-colors">
@@ -107,7 +111,7 @@ export default function WhyGlobalAadhar({ onNavigateContact }) {
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54] tracking-tight leading-snug mb-1">
+                  <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54] tracking-tight leading-snug mb-1 group-hover:text-[#1A332F] transition-colors">
                     {adv.title}
                   </h3>
                   <div className="text-[11px] font-deck-body font-bold text-[#555555] uppercase tracking-wider mb-3">
@@ -121,9 +125,9 @@ export default function WhyGlobalAadhar({ onNavigateContact }) {
                 </div>
 
                 {/* Bottom Detail Link */}
-                <div className="pt-4 mt-4 border-t border-[#D5D1C8]/60 flex items-center justify-between text-xs font-bold text-[#2D5A54] font-deck-body">
+                <div className="relative z-10 pt-4 mt-4 border-t border-[#D5D1C8]/60 flex items-center justify-between text-xs font-bold text-[#2D5A54] font-deck-body">
                   <span>Strategic Capability</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>
               </motion.div>
             );

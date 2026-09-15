@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -347,6 +347,80 @@ input[type="range"]::-moz-range-thumb {
 .wave-bar-2 { animation: wave-bounce 1.2s ease-in-out infinite 0.2s; }
 .wave-bar-3 { animation: wave-bounce 0.9s ease-in-out infinite 0.4s; }
 .wave-bar-4 { animation: wave-bounce 1.3s ease-in-out infinite 0.1s; }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+@keyframes border-glow-pulse {
+  0%, 100% {
+    border-color: rgba(45, 90, 84, 0.25);
+    box-shadow: 0 0 0 0 rgba(45, 90, 84, 0);
+  }
+  50% {
+    border-color: rgba(45, 90, 84, 0.8);
+    box-shadow: 0 0 20px 2px rgba(45, 90, 84, 0.25);
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@keyframes subtle-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 80%
+  );
+  animation: shimmer 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.animate-subtle-bob {
+  animation: subtle-bob 4s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 6s ease infinite;
+}
+
+.animate-border-glow {
+  animation: border-glow-pulse 3s infinite ease-in-out;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

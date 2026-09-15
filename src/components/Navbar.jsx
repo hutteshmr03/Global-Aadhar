@@ -1,4 +1,5 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ 
@@ -52,15 +53,16 @@ export default function Navbar({
     if (onNavigateHome) onNavigateHome();
     else if (onNavigatePage) onNavigatePage('home');
     else window.location.hash = '';
+    setMobileMenuOpen(false);
   };
 
   return (
     <header className="sticky top-2 sm:top-3 z-50 px-3 sm:px-6 lg:px-8 max-w-[1340px] mx-auto w-full transition-all duration-300">
-      {/* Floating Condensing Capsule Bar (Media Mantra Shrink & Solidify on Scroll) */}
-      <div className={`w-full rounded-2xl sm:rounded-full transition-all duration-300 border border-[#D5D1C8] border-b-2 border-b-[#2D5A54] relative ${
+      {/* Floating Pill Capsule Bar */}
+      <div className={`w-full rounded-full transition-all duration-300 border border-[#D5D1C8] relative overflow-hidden ${
         scrolled 
-          ? 'bg-[#EDEBE7]/98 backdrop-blur-xl shadow-xl py-2 sm:py-2.5 px-4 sm:px-6 lg:px-8 scale-[0.99]' 
-          : 'bg-[#EDEBE7]/85 backdrop-blur-md shadow-md py-3 sm:py-3.5 px-4 sm:px-6 lg:px-8 scale-100'
+          ? 'bg-[#EDEBE7]/98 backdrop-blur-xl shadow-xl py-2 px-4 sm:px-6 lg:px-8 scale-[0.99]' 
+          : 'bg-[#EDEBE7]/90 backdrop-blur-md shadow-md py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8 scale-100'
       }`}>
         {/* Integrated Scroll Progress Line */}
         <div 
@@ -72,7 +74,7 @@ export default function Navbar({
           />
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
           {/* Brand Wordmark */}
           <a 
             href="#" 
@@ -80,11 +82,11 @@ export default function Navbar({
             className="flex flex-col group text-decoration-none cursor-pointer shrink-0"
           >
             <div className={`font-deck-headline font-bold text-[#2D5A54] tracking-tight leading-none group-hover:text-[#23413C] transition-all whitespace-nowrap ${
-              scrolled ? 'text-base sm:text-lg xl:text-xl' : 'text-lg sm:text-xl xl:text-2xl'
+              scrolled ? 'text-base sm:text-lg xl:text-xl' : 'text-base sm:text-xl xl:text-2xl'
             }`}>
               GLOBAL AADHAR
             </div>
-            <div className="font-deck-body text-[8px] sm:text-[9px] font-bold text-[#555555] tracking-[0.16em] uppercase mt-0.5 whitespace-nowrap">
+            <div className="font-deck-body text-[7.5px] sm:text-[9px] font-bold text-[#555555] tracking-[0.14em] sm:tracking-[0.16em] uppercase mt-0.5 whitespace-nowrap">
               STRATEGIC COMMUNICATIONS
             </div>
           </a>
@@ -135,7 +137,7 @@ export default function Navbar({
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full border border-[#D5D1C8] bg-[#EDEBE7] text-[#2D5A54] hover:bg-white transition-colors cursor-pointer shadow-2xs flex items-center justify-center w-9 h-9"
+              className="lg:hidden p-2 rounded-full border border-[#D5D1C8] bg-white/80 hover:bg-white text-[#2D5A54] transition-colors cursor-pointer shadow-2xs flex items-center justify-center w-9 h-9 active:scale-95"
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -145,44 +147,53 @@ export default function Navbar({
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden mt-2 rounded-2xl border border-[#D5D1C8] bg-[#EDEBE7]/98 backdrop-blur-xl p-4 sm:p-5 space-y-3 shadow-2xl animate-fade-in">
-          <nav className="flex flex-col space-y-1 font-deck-body text-xs sm:text-sm font-semibold text-[#2B2B2B]">
-            {navLinks.map((link) => {
-              const isActive = currentPage === link.id;
-              return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link)}
-                  className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer font-medium ${
-                    isActive 
-                      ? 'bg-[#2D5A54] text-white font-bold' 
-                      : 'hover:bg-[#2D5A54]/10 text-[#2B2B2B]'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </nav>
-          <div className="pt-2 sm:hidden border-t border-[#D5D1C8]/60">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavigatePage) onNavigatePage('contact');
-                else if (onNavigateContact) onNavigateContact();
-                else window.location.hash = '#/contact';
-              }}
-              className="btn-primary-teal w-full justify-center text-xs py-3 rounded-full cursor-pointer shadow-md font-bold"
-            >
-              <span>Let's Talk</span>
-              <ArrowUpRight className="w-4 h-4 ml-1.5" />
-            </button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="lg:hidden mt-2 rounded-3xl border border-[#D5D1C8] bg-[#EDEBE7]/98 backdrop-blur-xl p-4 sm:p-5 space-y-3 shadow-2xl overflow-hidden"
+          >
+            <nav className="flex flex-col space-y-1 font-deck-body text-xs sm:text-sm font-semibold text-[#2B2B2B]">
+              {navLinks.map((link) => {
+                const isActive = currentPage === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link)}
+                    className={`px-4 py-2.5 rounded-2xl transition-all cursor-pointer font-medium flex items-center justify-between ${
+                      isActive 
+                        ? 'bg-[#2D5A54] text-white font-bold shadow-xs' 
+                        : 'hover:bg-[#2D5A54]/10 text-[#2B2B2B]'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white"></span>}
+                  </a>
+                );
+              })}
+            </nav>
+            <div className="pt-2 sm:hidden border-t border-[#D5D1C8]/60">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onNavigatePage) onNavigatePage('contact');
+                  else if (onNavigateContact) onNavigateContact();
+                  else window.location.hash = '#/contact';
+                }}
+                className="btn-primary-teal w-full justify-center text-xs py-3 rounded-full cursor-pointer shadow-md font-bold"
+              >
+                <span>Let's Talk</span>
+                <ArrowUpRight className="w-4 h-4 ml-1.5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

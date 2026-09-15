@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Search, Lightbulb, Zap, LineChart, ArrowRight } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
@@ -95,8 +95,10 @@ export default function ClientEngagementModel({ onNavigateContact }) {
 
         {/* STANDING PROCESS COMPONENT: CONNECTED TIMELINE WITH ANIMATED GUIDE BEAM */}
         <div className="relative">
-          {/* Animated Gradient Connector Line */}
-          <div className="hidden lg:block absolute top-10 left-24 right-24 h-[2px] bg-gradient-to-r from-[#2D5A54]/20 via-[#2D5A54] to-[#2D5A54]/20 z-0 animate-pulse"></div>
+          {/* Animated Gradient Connector Line & Traveling Photon Pulse */}
+          <div className="hidden lg:block absolute top-12 left-20 right-20 h-[3px] bg-[#D5D1C8] z-0 overflow-hidden rounded-full">
+            <div className="w-full h-full bg-gradient-to-r from-transparent via-[#2D5A54] to-transparent animate-beam-flow"></div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 relative z-10 items-stretch">
             {steps.map((step, idx) => (

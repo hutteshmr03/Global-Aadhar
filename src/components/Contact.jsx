@@ -1,6 +1,7 @@
-﻿import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Mail, Phone, User, Send, CheckCircle2, ArrowRight, Clock, ShieldCheck, MessageSquare } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { brandMeta } from '../data/brandContent';
 
 export default function Contact({ onNavigateContact }) {
@@ -23,6 +24,16 @@ export default function Contact({ onNavigateContact }) {
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
+      try {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#2D5A54', '#10B981', '#EDEBE7', '#D5D1C8']
+        });
+      } catch (err) {
+        // silent fallback
+      }
     }, 450);
   };
 
@@ -158,38 +169,53 @@ export default function Contact({ onNavigateContact }) {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7 p-6 sm:p-8 lg:p-10 rounded-3xl bg-white text-[#2B2B2B] shadow-2xl space-y-6"
           >
-            {submitted ? (
-              <div className="py-12 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="font-deck-headline text-2xl text-[#2D5A54]">
-                  INQUIRY TRANSMITTED SUCCESSFULLY
-                </h3>
-                <p className="font-deck-body text-xs sm:text-sm text-[#555555] max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out. Amol K Arondekar and the Global Aadhar strategic communications desk will review your mandate and respond within 24 hours.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', email: '', phone: '', company: '', serviceInterest: 'Strategic PR Retainer', message: '' });
-                  }}
-                  className="btn-primary-teal text-xs py-2.5 px-6 rounded-full cursor-pointer mt-2"
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div 
+                  key="submitted"
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                  className="py-12 text-center space-y-4"
                 >
-                  Send Another Inquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-1">
-                  <h3 className="font-deck-headline text-xl sm:text-2xl text-[#1A332F]">
-                    INITIATE STRATEGIC DIALOGUE
+                  <div className="w-16 h-16 rounded-full bg-[#2D5A54]/10 text-[#2D5A54] flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="font-deck-headline text-2xl text-[#2D5A54]">
+                    INQUIRY TRANSMITTED SUCCESSFULLY
                   </h3>
-                  <p className="font-deck-body text-xs text-[#555555]">
-                    Share your requirements with our Panjim bureau.
+                  <p className="font-deck-body text-xs sm:text-sm text-[#555555] max-w-md mx-auto leading-relaxed">
+                    Thank you for reaching out. Amol K Arondekar and the Global Aadhar strategic communications desk will review your mandate and respond within 24 hours.
                   </p>
-                </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', phone: '', company: '', serviceInterest: 'Strategic PR Retainer', message: '' });
+                    }}
+                    className="btn-primary-teal text-xs py-2.5 px-6 rounded-full cursor-pointer mt-2"
+                  >
+                    Send Another Inquiry
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit} 
+                  className="space-y-4"
+                >
+                  <div className="space-y-1">
+                    <h3 className="font-deck-headline text-xl sm:text-2xl text-[#1A332F]">
+                      INITIATE STRATEGIC DIALOGUE
+                    </h3>
+                    <p className="font-deck-body text-xs text-[#555555]">
+                      Share your requirements with our Panjim bureau.
+                    </p>
+                  </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -289,8 +315,9 @@ export default function Contact({ onNavigateContact }) {
                   <span>{loading ? 'Transmitting Brief...' : 'Transmit Strategic Consultation Request'}</span>
                   <Send className="w-4 h-4 ml-1.5" />
                 </button>
-              </form>
+              </motion.form>
             )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
