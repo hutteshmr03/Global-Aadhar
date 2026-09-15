@@ -102,8 +102,8 @@ export default function Contact({ onNavigateContact }) {
 
               <div className="space-y-5 text-xs font-deck-body">
                 {/* Leadership */}
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10">
+                <div className="flex items-start gap-3.5 group/item hover:translate-x-1.5 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10 group-hover/item:bg-emerald-500/20 group-hover/item:text-white group-hover/item:border-emerald-400/30 transition-all duration-300">
                     <User className="w-5 h-5" />
                   </div>
                   <div>
@@ -114,8 +114,8 @@ export default function Contact({ onNavigateContact }) {
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10">
+                <div className="flex items-start gap-3.5 group/item hover:translate-x-1.5 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10 group-hover/item:bg-emerald-500/20 group-hover/item:text-white group-hover/item:border-emerald-400/30 transition-all duration-300">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -127,8 +127,8 @@ export default function Contact({ onNavigateContact }) {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10">
+                <div className="flex items-start gap-3.5 group/item hover:translate-x-1.5 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10 group-hover/item:bg-emerald-500/20 group-hover/item:text-white group-hover/item:border-emerald-400/30 transition-all duration-300">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -140,8 +140,8 @@ export default function Contact({ onNavigateContact }) {
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10">
+                <div className="flex items-start gap-3.5 group/item hover:translate-x-1.5 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-300 border border-white/10 group-hover/item:bg-emerald-500/20 group-hover/item:text-white group-hover/item:border-emerald-400/30 transition-all duration-300">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>

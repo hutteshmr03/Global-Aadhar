@@ -27,9 +27,13 @@ function CounterItem({ item, inView }) {
   }, [inView, item.value]);
 
   return (
-    <div className="p-6 sm:p-7 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-main)] hover:border-[var(--border-strong)] transition-all flex flex-col justify-center space-y-3.5 shadow-sm">
+    <motion.div 
+      whileHover={{ y: -4, scale: 1.02 }}
+      transition={{ duration: 0.25 }}
+      className="p-6 sm:p-7 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-main)] hover:border-[var(--border-strong)] transition-all flex flex-col justify-center space-y-3.5 shadow-sm hover:shadow-lg cursor-default group"
+    >
       <div>
-        <div className="font-mono-data text-[11px] sm:text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold mb-1.5">
+        <div className="font-mono-data text-[11px] sm:text-xs text-[var(--text-muted)] group-hover:text-[var(--text-primary)] uppercase tracking-wider font-bold mb-1.5 transition-colors">
           {item.label}
         </div>
         <div className="font-serif-headline text-3xl sm:text-4xl lg:text-[42px] font-black text-[var(--text-primary)] leading-none tracking-tight">
@@ -39,7 +43,7 @@ function CounterItem({ item, inView }) {
       <p className="font-sans-body text-xs text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-main)] pt-3">
         {item.description}
       </p>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Ticker from './components/Ticker';
@@ -18,6 +18,7 @@ import StickyContactAffordance from './components/StickyContactAffordance';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BrandIntroSplash from './components/BrandIntroSplash';
+import BackgroundVideo from './components/BackgroundVideo';
 
 // Dedicated Standalone Pages
 import WhoWeArePage from './pages/WhoWeArePage';
@@ -95,6 +96,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#E5E3DE] text-[#2B2B2B] selection:bg-[#2D5A54] selection:text-white relative agency-bg-pattern">
+      {/* Media Mantra Style Live Background Video Layer */}
+      <BackgroundVideo />
+
       {/* Burson-Style Full-Screen Brand Intro/Splash Animation (First Visit Only) */}
       <BrandIntroSplash />
 
@@ -110,7 +114,7 @@ function App() {
       />
 
       {/* Standalone Page Routing Switch */}
-      <main>
+      <main className="relative z-10">
         {currentPage === 'who-we-are' ? (
           <WhoWeArePage 
             onNavigateContact={() => navigateToPage('contact')}

@@ -28,6 +28,7 @@ const serviceBadges = {
 export default function Services({ onNavigateService, onNavigateContact }) {
   const services = coreServicesContent.services;
   const [selectedPrVideo, setSelectedPrVideo] = useState(0);
+  const [playingVideoIndex, setPlayingVideoIndex] = useState(null);
 
   const handleCardClick = (serviceId) => {
     if (onNavigateService) {
@@ -44,6 +45,7 @@ export default function Services({ onNavigateService, onNavigateContact }) {
       headline: "We deliver real value",
       subtitle: "Through our narrative-first approach, broadcast media network, and high-production storytelling across Goa and Western India.",
       image: "https://images.unsplash.com/photo-1579566346927-c68383817a25?auto=format&fit=crop&w=1600&q=80",
+      videoId: "LXb3EKWsInQ",
       tag: "4K Ultra HD Commercial",
       spec: "Cinema Rigging • Script-to-Screen Direction",
       status: "Production Reel in Curation • Available on Request",
@@ -56,6 +58,7 @@ export default function Services({ onNavigateService, onNavigateContact }) {
       headline: "Amplifying Reach Across Media",
       subtitle: "Broadcast-ready press conferences, executive interviews, and regional TV news coverage ensuring your announcements lead headlines.",
       image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1600&q=80",
+      videoId: "M7lc1UVf-VE",
       tag: "Broadcast Media Wire",
       spec: "Press Management • Live News Feed",
       status: "Broadcast Footage in Curation • Available on Request",
@@ -68,6 +71,7 @@ export default function Services({ onNavigateService, onNavigateContact }) {
       headline: "Inspiring Confidence & Trust",
       subtitle: "On-ground documentary filmmaking and beneficiary video stories connecting corporate social responsibility mandates with community trust.",
       image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+      videoId: "ScMzIvxBSi4",
       tag: "CSR Impact Documentary",
       spec: "Field Production • Multilingual Dubbing",
       status: "Documentary Reel in Curation • Available on Request",
@@ -114,10 +118,6 @@ export default function Services({ onNavigateService, onNavigateContact }) {
           {services.map((service, idx) => {
             const Icon = serviceIcons[service.id] || Layers;
             const badge = serviceBadges[service.id] || `SERVICE 0${idx + 1}`;
-            const isMediaProduction = service.id === 'media-production';
-            const isEvents = service.id === 'events-experiences';
-            const isDigital = service.id === 'digital-marketing';
-
             const bullets = (service.items || []).map(item => item.title || item.step || item.description);
 
             return (
@@ -136,7 +136,6 @@ export default function Services({ onNavigateService, onNavigateContact }) {
                   description={service.tagline || service.intro || service.copy}
                   bullets={bullets.slice(0, 3)}
                   image={service.image}
-                  subtitle={isMediaProduction ? "✦ Broadcast 4K Reel Available" : isEvents ? "✦ Plan → Produce → Execute → Amplify" : isDigital ? "✦ Live Growth & Performance Tracking" : null}
                   ctaText="Explore Capability"
                   ctaHref={`#service/${service.id}`}
                   onCtaClick={() => handleCardClick(service.id)}
@@ -280,35 +279,67 @@ export default function Services({ onNavigateService, onNavigateContact }) {
 
                     {/* Right Column: Floating 16:9 Showcase Frame */}
                     <div className="lg:col-span-7">
-                      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black aspect-video group">
-                        <img
-                          src={item.image}
-                          alt={`Global Aadhar Production Showcase ${item.number} - ${item.headline}`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-90"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-between p-5 sm:p-6">
-                          <div className="flex justify-end">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10.5px] font-semibold text-emerald-300 font-deck-body">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                              Curated Production Showcase
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-3 sm:gap-4">
-                            <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-lg group-hover:scale-105 group-hover:bg-[#2D5A54]/80 transition-all duration-300 shrink-0">
-                              <Play className="w-5 h-5 fill-white ml-0.5" />
+                      {playingVideoIndex === idx ? (
+                        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-emerald-400 shadow-2xl bg-black aspect-video">
+                          <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube-nocookie.com/embed/${item.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                            title={`Global Aadhar Video Showcase ${item.number} - ${item.headline}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                          ></iframe>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setPlayingVideoIndex(null);
+                            }}
+                            className="absolute top-3 right-3 px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-deck-body font-bold border border-white/20 backdrop-blur-md transition-all cursor-pointer shadow-lg z-20"
+                          >
+                            ✕ Close Video
+                          </button>
+                        </div>
+                      ) : (
+                        <div 
+                          onClick={() => setPlayingVideoIndex(idx)}
+                          className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black aspect-video group cursor-pointer"
+                        >
+                          <img
+                            src={item.image}
+                            alt={`Global Aadhar Production Showcase ${item.number} - ${item.headline}`}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-90"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-between p-5 sm:p-6">
+                            <div className="flex justify-end">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10.5px] font-semibold text-emerald-300 font-deck-body">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Click to Play Showcase
+                              </span>
                             </div>
-                            <div>
-                              <div className="text-xs sm:text-sm font-bold text-white font-deck-body">
-                                {item.status}
-                              </div>
-                              <div className="text-[10px] sm:text-[11px] text-[#D5D1C8] font-deck-body">
-                                Broadcast & 4K Master Assets Available for Client Briefing
+
+                            <div className="flex items-center gap-3 sm:gap-4">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setPlayingVideoIndex(idx);
+                                }}
+                                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-emerald-400 transition-all duration-300 shrink-0 cursor-pointer border-2 border-white/40"
+                              >
+                                <Play className="w-6 h-6 fill-white ml-0.5" />
+                              </button>
+                              <div>
+                                <div className="text-xs sm:text-sm font-bold text-white font-deck-body group-hover:text-emerald-300 transition-colors">
+                                  {item.status}
+                                </div>
+                                <div className="text-[10px] sm:text-[11px] text-[#D5D1C8] font-deck-body">
+                                  Click to Watch • Broadcast & 4K Master Asset
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                       <div className="flex items-center justify-between text-[11px] font-deck-body text-[#D5D1C8]/80 pt-3 px-1">
                         <span>✦ {item.tag}</span>
                         <span>Global Aadhar Panjim Bureau</span>

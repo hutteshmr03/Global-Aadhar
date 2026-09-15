@@ -15,6 +15,17 @@
   --color-text-muted: #555555;
   --color-border-subtle: #D5D1C8;
   --color-border-accent: #2D5A54;
+
+  /* Universal Component Theme Compatibility */
+  --bg-main: #E5E3DE;
+  --bg-surface: #EDEBE7;
+  --bg-surface-alt: #E5E3DE;
+  --text-primary: #1A332F;
+  --text-secondary: #333333;
+  --text-muted: #555555;
+  --border-main: #D5D1C8;
+  --border-strong: #2D5A54;
+  --accent-red: #2D5A54;
   
   --font-headline: 'Archivo Black', 'Oswald', 'Anton', sans-serif;
   --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -131,16 +142,16 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #2D5A54;
+  color: #1A332F;
 }
 
 /* Standardized Section Headlines & Intros */
 .deck-section-title {
   font-family: var(--font-headline);
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.15;
-  color: #2D5A54;
+  color: #1A332F;
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
@@ -438,6 +449,83 @@ input[type="range"]::-moz-range-thumb {
   animation: border-glow-pulse 3s infinite ease-in-out;
 }
 
+/* Card Image Vertical Bob (Uiverse by JohnnyCSilva adapted for Core Services) */
+@keyframes imageVerticalBob {
+  0% {
+    transform: scale(1.06) translateY(-3px);
+  }
+  50% {
+    transform: scale(1.06) translateY(3px);
+  }
+  100% {
+    transform: scale(1.06) translateY(-3px);
+  }
+}
+
+.card-image-bob {
+  transform: scale(1) translateY(0);
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-image-bob {
+    animation: imageVerticalBob 3s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-image-bob,
+  .group:hover .card-image-bob {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Diagonal Ambient Drift Pattern (Uiverse by chase2k25 adapted to brand ink) */
+@keyframes diagonalDrift {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1.05);
+  }
+  50% {
+    transform: translateY(-24px) rotate(0.8deg) scale(1.08);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1.05);
+  }
+}
+
+.bg-diagonal-ink-pattern {
+  background-color: #1A332F;
+}
+
+.diagonal-ink-texture {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.018) 0px,
+    rgba(255, 255, 255, 0.018) 2px,
+    transparent 2px,
+    transparent 14px
+  );
+  animation: diagonalDrift 24s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+  transform-origin: center center;
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagonal-ink-texture {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -452,3 +540,4 @@ input[type="range"]::-moz-range-thumb {
 ::-webkit-scrollbar-thumb:hover {
   background: #2D5A54;
 }
+

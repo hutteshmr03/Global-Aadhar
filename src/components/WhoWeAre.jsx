@@ -86,6 +86,7 @@ export default function WhoWeAre({ onNavigateContact }) {
               className="h-full"
             >
               <FeatureCard
+                variant="pillar"
                 icon={pillar.icon}
                 badge={pillar.badge}
                 title={pillar.title}

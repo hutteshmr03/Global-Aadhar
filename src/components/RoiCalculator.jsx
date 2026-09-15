@@ -38,11 +38,11 @@ export default function RoiCalculator({ onNavigateContact }) {
       <div className="deck-container">
         {/* Slide Header Bar */}
         <div className="slide-header-bar">
-          <div className="flex items-center gap-2 font-deck-body font-bold text-[#2D5A54]">
-            <span className="w-2 h-2 rounded-full bg-[#2D5A54]"></span>
+          <div className="flex items-center gap-2 font-deck-body font-bold text-[#1A332F]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2D5A54]"></span>
             <span>CAMPAIGN SCOPE & PR IMPACT ESTIMATOR</span>
           </div>
-          <div className="font-deck-body text-[10px] sm:text-[11px] text-[#555555] tracking-widest uppercase">
+          <div className="font-deck-body text-[10.5px] sm:text-[11px] font-bold text-[#444444] tracking-widest uppercase">
             INTERACTIVE ESTIMATION ENGINE
           </div>
         </div>
@@ -53,28 +53,31 @@ export default function RoiCalculator({ onNavigateContact }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-8 sm:mb-10 space-y-2"
+          className="mb-8 sm:mb-10 space-y-2.5 max-w-3xl"
         >
-          <h2 className="font-deck-headline text-3xl sm:text-4xl text-[#2D5A54] tracking-tight">
-            Estimate Your Strategic PR & Media Impact
+          <div className="text-xs font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider">
+            Interactive Scope & Impact Engine
+          </div>
+          <h2 className="font-deck-headline text-3xl sm:text-4xl lg:text-5xl text-[#1A332F] font-black tracking-tight leading-tight">
+            ESTIMATE YOUR STRATEGIC PR & MEDIA IMPACT
           </h2>
-          <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] max-w-2xl leading-relaxed">
+          <p className="font-deck-body text-xs sm:text-sm lg:text-base text-[#2B2B2B] font-medium leading-relaxed">
             Configure your industry sector, media distribution breadth, and engagement horizon to calculate projected editorial reach, advertising value equivalency (AVE), and stakeholder engagement.
           </p>
         </motion.div>
 
         {/* Calculator Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Controls Panel */}
+          {/* Controls Panel - High Contrast Solid Porcelain Card */}
           <motion.div 
             initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-[#EDEBE7] border border-[#D5D1C8] shadow-md space-y-5 flex flex-col justify-between"
+            className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-white border border-[#D5D1C8] shadow-xl space-y-5 flex flex-col justify-between relative z-10"
           >
             <div className="space-y-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-[#D5D1C8] text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+              <div className="flex items-center gap-2 pb-3 border-b border-[#D5D1C8] text-xs font-bold text-[#1A332F] uppercase tracking-wider font-deck-body">
                 <Sparkles className="w-4 h-4 text-[#2D5A54]" />
                 <span>1. Select Primary Sector</span>
               </div>
@@ -88,8 +91,8 @@ export default function RoiCalculator({ onNavigateContact }) {
                     onClick={() => setSectorKey(key)}
                     className={`p-3 rounded-xl text-xs font-deck-body font-bold text-center transition-all cursor-pointer ${
                       sectorKey === key
-                        ? 'bg-[#2D5A54] text-white shadow-xs border border-[#2D5A54]'
-                        : 'bg-[#E5E3DE] text-[#2B2B2B] border border-[#D5D1C8] hover:border-[#2D5A54]'
+                        ? 'bg-[#2D5A54] text-white shadow-sm border border-[#2D5A54]'
+                        : 'bg-[#EDEBE7] text-[#1A332F] border border-[#D5D1C8] hover:border-[#2D5A54] hover:bg-[#E5E3DE]'
                     }`}
                   >
                     {data.name}
@@ -102,10 +105,10 @@ export default function RoiCalculator({ onNavigateContact }) {
                 {/* Outlets Slider */}
                 <div>
                   <div className="flex justify-between items-center mb-1.5 font-deck-body">
-                    <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+                    <span className="text-xs font-bold text-[#1A332F] uppercase tracking-wider">
                       Target Media & Press Outlets
                     </span>
-                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-3 py-1 rounded-full border border-[#D5D1C8]">
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#EDEBE7] px-3 py-1 rounded-full border border-[#D5D1C8]">
                       {outletCount} Outlets
                     </span>
                   </div>
@@ -117,7 +120,7 @@ export default function RoiCalculator({ onNavigateContact }) {
                     onChange={(e) => setOutletCount(Number(e.target.value))}
                     className="w-full accent-[#2D5A54] bg-[#D5D1C8] h-2 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between text-[10px] font-deck-body text-[#555555] mt-1">
+                  <div className="flex justify-between text-[11px] font-deck-body text-[#555555] font-semibold mt-1">
                     <span>2 Regional Dailies</span>
                     <span>15 State & National Media Wire</span>
                   </div>
@@ -126,10 +129,10 @@ export default function RoiCalculator({ onNavigateContact }) {
                 {/* Duration Slider */}
                 <div>
                   <div className="flex justify-between items-center mb-1.5 font-deck-body">
-                    <span className="text-xs font-bold text-[#2D5A54] uppercase tracking-wider">
+                    <span className="text-xs font-bold text-[#1A332F] uppercase tracking-wider">
                       Engagement Horizon
                     </span>
-                    <span className="text-xs font-bold text-[#2D5A54] bg-[#E5E3DE] px-3 py-1 rounded-full border border-[#D5D1C8]">
+                    <span className="text-xs font-bold text-[#2D5A54] bg-[#EDEBE7] px-3 py-1 rounded-full border border-[#D5D1C8]">
                       {durationMonths} {durationMonths === 1 ? 'Month' : 'Months'}
                     </span>
                   </div>
@@ -141,19 +144,19 @@ export default function RoiCalculator({ onNavigateContact }) {
                     onChange={(e) => setDurationMonths(Number(e.target.value))}
                     className="w-full accent-[#2D5A54] bg-[#D5D1C8] h-2 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between text-[10px] font-deck-body text-[#555555] mt-1">
+                  <div className="flex justify-between text-[11px] font-deck-body text-[#555555] font-semibold mt-1">
                     <span>1 Month (Project Sprint)</span>
                     <span>12 Months (Annual Retainer)</span>
                   </div>
                 </div>
 
                 {/* Tech Integration Toggle */}
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#E5E3DE] border border-[#D5D1C8]">
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8]">
                   <div className="flex items-center gap-2.5">
                     <Layers className="w-4 h-4 text-[#2D5A54] shrink-0" />
                     <div>
-                      <div className="text-xs font-bold text-[#2B2B2B]">Include Sumant Cloud Tech & Digital PR</div>
-                      <div className="text-[10px] text-[#555555]">Integrated enterprise software, SEO resonance, and digital kits</div>
+                      <div className="text-xs font-bold text-[#1A332F]">Include Sumant Cloud Tech & Digital PR</div>
+                      <div className="text-[10.5px] text-[#555555] font-medium">Integrated enterprise software, SEO resonance, and digital kits</div>
                     </div>
                   </div>
                   <input
@@ -166,7 +169,7 @@ export default function RoiCalculator({ onNavigateContact }) {
               </div>
             </div>
 
-            <div className="text-[11px] font-deck-body text-[#555555] pt-2 border-t border-[#D5D1C8]/80 flex items-center gap-1.5">
+            <div className="text-[11px] font-deck-body text-[#555555] pt-2 border-t border-[#D5D1C8]/80 flex items-center gap-1.5 font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A54] shrink-0" />
               <span>* Illustrative scope estimation tool for planning purposes. Final campaign scope and deliverables are customized upon consultation.</span>
             </div>

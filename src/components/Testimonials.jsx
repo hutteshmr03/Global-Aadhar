@@ -30,9 +30,10 @@ export default function Testimonials() {
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4, scale: 1.015 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="p-8 sm:p-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-main)] shadow-sm flex flex-col justify-between h-full min-h-[360px] hover:border-[var(--border-strong)] transition-all"
+              transition={{ duration: 0.35, delay: index * 0.1 }}
+              className="p-8 sm:p-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-main)] shadow-sm hover:shadow-xl flex flex-col justify-between h-full min-h-[360px] hover:border-[var(--border-strong)] transition-all duration-300 group"
             >
               {/* Top Quote Content */}
               <div className="space-y-4">

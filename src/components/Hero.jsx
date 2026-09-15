@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ShieldCheck, Award, Radio, MapPin, User } from 'lucide-react';
 import { brandMeta } from '../data/brandContent';
@@ -31,7 +31,7 @@ export default function Hero({ onNavigateContact, onNavigateService }) {
   const currentHeadline = heroHeadlines[headlineIndex];
 
   return (
-    <section className="relative pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20 overflow-hidden bg-[#E5E3DE]">
+    <section className="relative pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20 overflow-hidden bg-transparent">
       {/* Dynamic Ambient Background Aura */}
       <div className="absolute top-10 left-1/4 w-[600px] h-[600px] rounded-full bg-[#2D5A54]/12 blur-[140px] pointer-events-none animate-pulse-glow"></div>
       <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-emerald-600/10 blur-[130px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '2.5s' }}></div>

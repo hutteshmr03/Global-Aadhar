@@ -82,52 +82,52 @@ export default function WhyGlobalAadhar({ onNavigateContact }) {
           </p>
         </motion.div>
 
-        {/* Burson-Style 6-Point Expertise Grid (Clean, Restrained Whitespace, Confident Labels) */}
+        {/* 6-Point Expertise Grid with High-Contrast Light Beveled Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {advantages.map((adv, idx) => {
             const Icon = adv.icon;
             return (
               <motion.div
                 key={adv.number}
-                initial={{ opacity: 0, y: 22 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -6, scale: 1.015 }}
-                transition={{ duration: 0.35, delay: idx * 0.06 }}
-                className="p-6 sm:p-7 rounded-2xl bg-[#EDEBE7] border border-[#D5D1C8] hover:border-[#2D5A54] shadow-xs hover:shadow-2xl transition-colors duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
+                transition={{ duration: 0.35, delay: idx * 0.05 }}
+                className="relative rounded-[28px] p-6 sm:p-7 flex flex-col justify-between h-full group overflow-hidden border border-[#D5D9E0] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(45,90,84,0.18)] hover:border-[#2D5A54]/50 transition-all duration-500 cursor-default"
+                style={{
+                  background: 'linear-gradient(180deg, #DDE1E7 0%, #EEF1F5 9%, #F9FAFB 24%, #FFFFFF 100%)',
+                  boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), 0 4px 20px 0 rgba(0, 0, 0, 0.04)'
+                }}
               >
-                {/* Ambient glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#2D5A54]/5 rounded-full blur-xl group-hover:bg-[#2D5A54]/15 group-hover:scale-125 transition-all duration-500 pointer-events-none"></div>
+                {/* Subtle ambient light bloom */}
+                <div className="absolute top-0 right-0 w-36 h-36 bg-[#2D5A54]/5 rounded-full blur-xl group-hover:bg-[#2D5A54]/10 group-hover:scale-125 transition-all duration-500 pointer-events-none z-0"></div>
 
                 <div className="relative z-10">
                   {/* Top Bar: Icon Badge & Number */}
-                  <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#D5D1C8]/60">
-                    <div className="w-10 h-10 rounded-xl bg-[#2D5A54]/10 text-[#2D5A54] group-hover:bg-[#2D5A54] group-hover:text-white group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 flex items-center justify-center font-bold shadow-2xs">
+                  <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-[#D8DCE4]">
+                    <div className="w-10 h-10 rounded-2xl bg-white text-[#2D5A54] border border-[#D5D9E0] flex items-center justify-center font-bold shadow-2xs group-hover:bg-[#2D5A54] group-hover:text-white group-hover:border-[#2D5A54] group-hover:rotate-6 group-hover:scale-105 transition-all duration-300">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="font-deck-headline text-xs text-[#555555] group-hover:text-[#2D5A54] transition-colors">
+                    <span className="font-deck-headline text-xs font-bold text-[#2D5A54] bg-[#2D5A54]/10 border border-[#2D5A54]/15 px-2.5 py-1 rounded-full group-hover:bg-[#2D5A54] group-hover:text-white group-hover:border-[#2D5A54] transition-all duration-300">
                       {adv.number}
                     </span>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <h3 className="font-deck-headline text-lg sm:text-xl text-[#2D5A54] tracking-tight leading-snug mb-1 group-hover:text-[#1A332F] transition-colors">
+                  {/* Title */}
+                  <h3 className="min-h-[2.75rem] sm:min-h-[3.25rem] flex items-start font-deck-headline text-lg sm:text-xl text-[#1A332F] font-bold tracking-tight leading-snug mb-1 group-hover:text-[#2D5A54] transition-colors">
                     {adv.title}
                   </h3>
-                  <div className="text-[11px] font-deck-body font-bold text-[#555555] uppercase tracking-wider mb-3">
+
+                  {/* Tagline */}
+                  <div className="min-h-[1.25rem] flex items-center text-[10.5px] font-deck-body font-bold text-[#2D5A54] uppercase tracking-wider mb-3">
                     {adv.tagline}
                   </div>
 
                   {/* Editorial Body */}
-                  <p className="font-deck-body text-xs sm:text-sm text-[#2B2B2B] leading-relaxed">
+                  <p className="font-deck-body text-xs sm:text-sm text-[#333333] leading-relaxed">
                     {adv.description}
                   </p>
-                </div>
-
-                {/* Bottom Detail Link */}
-                <div className="relative z-10 pt-4 mt-4 border-t border-[#D5D1C8]/60 flex items-center justify-between text-xs font-bold text-[#2D5A54] font-deck-body">
-                  <span>Strategic Capability</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>
               </motion.div>
             );

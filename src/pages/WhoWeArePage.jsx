@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Radio, Users, Cpu, ArrowRight, CheckCircle2, Award, MapPin, User, ShieldCheck } from 'lucide-react';
 import { whoWeAreContent, brandMeta } from '../data/brandContent';
@@ -100,6 +100,7 @@ export default function WhoWeArePage({ onNavigateContact, onNavigateHome }) {
                 className="h-full"
               >
                 <FeatureCard
+                  variant="pillar"
                   icon={pillar.icon}
                   badge={pillar.badge}
                   title={pillar.title}

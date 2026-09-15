@@ -62,7 +62,7 @@ export default function Navbar({
       <div className={`w-full rounded-full transition-all duration-300 border border-[#D5D1C8] relative overflow-hidden ${
         scrolled 
           ? 'bg-[#EDEBE7]/98 backdrop-blur-xl shadow-xl py-2 px-4 sm:px-6 lg:px-8 scale-[0.99]' 
-          : 'bg-[#EDEBE7]/90 backdrop-blur-md shadow-md py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8 scale-100'
+          : 'bg-[#EDEBE7]/98 backdrop-blur-xl shadow-md py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8 scale-100'
       }`}>
         {/* Integrated Scroll Progress Line */}
         <div 
