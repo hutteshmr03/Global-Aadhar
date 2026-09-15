@@ -16,18 +16,25 @@ const mediaOutlets = [
 export default function Ticker() {
   return (
     <div className="w-full bg-[#EDEBE7] border-y border-[#D5D1C8] py-2.5 sm:py-3.5 select-none space-y-2 sm:space-y-2.5 relative overflow-hidden">
-      {/* Top Media Masthead Proof Ribbon */}
-      <div className="deck-container flex flex-col lg:flex-row lg:items-center justify-between gap-2 lg:gap-4 text-[10.5px] sm:text-[11px] font-deck-body font-bold text-[#555555] uppercase tracking-wider border-b border-[#D5D1C8]/60 pb-2 sm:pb-2.5">
+      {/* Top Media Masthead Proof Ribbon with Infinite Syndicate Marquee Animation */}
+      <div className="deck-container flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 text-[10.5px] sm:text-[11px] font-deck-body font-bold text-[#555555] uppercase tracking-wider border-b border-[#D5D1C8]/60 pb-2 sm:pb-2.5">
         <div className="flex items-center gap-2 text-[#2D5A54] shrink-0">
           <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2D5A54] shrink-0" />
-          <span className="truncate">Regional Media Syndicate & Publication Network:</span>
+          <span className="whitespace-nowrap">Regional Media Syndicate & Publication Network:</span>
         </div>
-        <div className="w-full lg:w-auto flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar py-0.5 font-bold text-[#2D5A54]">
-          {mediaOutlets.map((outlet, i) => (
-            <span key={i} className="whitespace-nowrap px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] text-[9.5px] sm:text-[10px] text-[#2D5A54] hover:border-[#2D5A54] transition-colors shadow-2xs shrink-0">
-              {outlet}
-            </span>
-          ))}
+        
+        {/* Animated Marquee Strip for Publication Badges */}
+        <div className="overflow-hidden flex-1 min-w-0 relative [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+          <div className="syndicate-track flex items-center gap-2 sm:gap-2.5 font-bold text-[#2D5A54] hover:[animation-play-state:paused] py-0.5">
+            {[...mediaOutlets, ...mediaOutlets, ...mediaOutlets].map((outlet, i) => (
+              <span 
+                key={i} 
+                className="whitespace-nowrap px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#E5E3DE] border border-[#D5D1C8] text-[9.5px] sm:text-[10px] text-[#2D5A54] hover:bg-[#2D5A54] hover:text-white hover:border-[#2D5A54] transition-all duration-200 shadow-2xs shrink-0 cursor-default"
+              >
+                {outlet}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
